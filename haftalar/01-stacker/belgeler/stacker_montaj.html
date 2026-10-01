@@ -1,0 +1,380 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Stacker Montaj Kartı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: atölye kartı — üstte büyük breadboard şeması, altında kural, tablolar ve rol kartları */
+:root{
+  --bg:#f3f5f4; --paper:#ffffff; --ink:#1d2624; --muted:#5b6866; --line:#d4dbd9;
+  --board:#ecefe9; --hole:#9aa49f; --rail-red:#d0453a; --rail-blue:#2f6fd1;
+  /* kablo renkleri: akımın yoluna göre */
+  --w-satir:#d63a3a;    /* Arduino -> matris satırı (akım girer) */
+  --w-sutun:#e8770e;    /* matris sütunu -> direnç */
+  --w-donus:#d9a400;    /* direnç -> Arduino (akım döner) */
+  --w-satir2:#f08a8a; --w-sutun2:#9a4a06; --w-donus2:#f2cf4a;
+  --w-gnd:#2b3331; --w-buton:#2b9a4a; --w-buzzer:#2f6fd1;
+  --res-body:#e9d9b8; --res-line:#7a5b2e;
+  --matrix:#22282a; --matrix-dot:#c9473e;
+  --tag-ink:#ffffff; --tag-ink-acik:#1d1a10;
+  --f-display:"Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body:"Source Sans 3", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#141a19; --paper:#1c2423; --ink:#e7eeec; --muted:#9fb0ad; --line:#2f3b39;
+  --board:#2a3230; --hole:#6f7d79; --rail-red:#ef6a5e; --rail-blue:#6c9eff;
+  --w-satir:#ff6b6b; --w-sutun:#ff9a45; --w-donus:#ffd54a;
+  --w-satir2:#ffb3b3; --w-sutun2:#c76a10; --w-donus2:#b88c00;
+  --w-gnd:#d5dedb; --w-buton:#5fd37a; --w-buzzer:#6c9eff;
+  --res-body:#5a4a2c; --res-line:#e8cf9a;
+  --matrix:#0b0f10; --matrix-dot:#ff6f61;
+  --tag-ink:#0f1514; --tag-ink-acik:#1d1a10; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#141a19; --paper:#1c2423; --ink:#e7eeec; --muted:#9fb0ad; --line:#2f3b39;
+  --board:#2a3230; --hole:#6f7d79; --rail-red:#ef6a5e; --rail-blue:#6c9eff;
+  --w-satir:#ff6b6b; --w-sutun:#ff9a45; --w-donus:#ffd54a;
+  --w-satir2:#ffb3b3; --w-sutun2:#c76a10; --w-donus2:#b88c00;
+  --w-gnd:#d5dedb; --w-buton:#5fd37a; --w-buzzer:#6c9eff;
+  --res-body:#5a4a2c; --res-line:#e8cf9a;
+  --matrix:#0b0f10; --matrix-dot:#ff6f61;
+  --tag-ink:#0f1514; --tag-ink-acik:#1d1a10; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:grid;gap:28px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(1.7rem,3.6vw,2.4rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:1.25rem;font-weight:700}
+h3{font-size:1.02rem;font-weight:700}
+p{margin:0;max-width:68ch}
+.eyebrow{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.head{display:grid;gap:8px}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:18px;display:grid;gap:14px;min-width:0}
+.scroll{overflow-x:auto}
+svg text{font-family:var(--f-mono)}
+#bb{display:block;width:100%;min-width:760px;height:auto}
+
+.akim{padding:12px 14px;border-radius:8px;background:var(--bg);line-height:1.7}
+.k{font-weight:600;padding:0 6px;border-radius:4px;background:var(--k);color:var(--tag-ink)}
+.k[style*="w-donus"]{color:var(--tag-ink-acik)}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.legend .item{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border-radius:8px;background:var(--bg);font-size:.95rem;line-height:1.4}
+.legend .swatch{flex:none;width:22px;height:8px;border-radius:4px;margin:7px 0 0}
+.swatch.res{background:repeating-linear-gradient(90deg,var(--res-body) 0 4px,#c0392b 4px 6px,var(--res-body) 6px 8px,#c0392b 8px 10px,var(--res-body) 10px 12px,#6b4423 12px 14px,var(--res-body) 14px 22px);outline:1px solid var(--res-line)}
+.note{font-size:.9rem;color:var(--muted)}
+.rule{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.rule .item{display:grid;gap:4px;padding:12px 14px;border-radius:8px;background:var(--bg)}
+.rule b{font-family:var(--f-mono);font-weight:600}
+.swatch{display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;margin-right:6px}
+
+.tables{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line)}
+th{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+td.pin{font-family:var(--f-mono);font-weight:600}
+tr.res td:first-child{box-shadow:inset 3px 0 0 var(--w-sutun)}
+tr.row td:first-child{box-shadow:inset 3px 0 0 var(--w-satir)}
+.res-tag{font-family:var(--f-mono);font-size:.8rem;color:var(--ink);font-weight:600}
+
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.role{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px;display:grid;gap:10px;align-content:start}
+.role .num{font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}
+.role ul{margin:0;padding-left:18px;display:grid;gap:4px}
+.role li{min-width:0}
+.count{font-family:var(--f-mono);font-size:.82rem;color:var(--muted)}
+
+.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.checks ol{margin:0;padding-left:20px;display:grid;gap:6px}
+kbd{font-family:var(--f-mono);font-size:.85em;padding:1px 5px;border:1px solid var(--line);border-radius:4px;background:var(--bg)}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <span class="eyebrow">Perşembe Arduino dersi · 1088BS 8×8 matris · Arduino UNO</span>
+    <h1>Stacker montaj kartı</h1>
+    <p>Breadboard yatay, <b>1 numara solda</b>. Senden uzaktan yakına: <span class="mono">− + | j i h g f | e d c b a | − +</span>. Matrisin her bacağına, aynı sütundaki <b>a</b> (sana yakın) ya da <b>j</b> (uzak) deliğinden bağlanılır.</p>
+  </header>
+
+  <section class="panel">
+    <h2>Breadboard şeması</h2>
+    <p>Matrisin "1088BS" yazısı sana (a tarafına) bakar. Sol baştaki bacak b5'e girer. Dirençler matrisin sağında yatay durur. Soldaki delikten çıkan turuncu kablo en uzaktaki dirence gider, böylece kablolar birbirinin üstünden geçmez. Sette olan 30 erkek-erkek kablonun 29'u kullanılır, dişi-erkek kablo gerekmez.</p>
+    <div class="scroll"><svg id="bb" viewBox="0 0 700 330" role="img" aria-label="Breadboard üstünde matris, dirençler, buton ve buzzer bağlantıları"></svg></div>
+    <div class="akim"><b>Akımın yolu:</b> Arduino satır pini <span class="mono">(HIGH)</span> → <span class="k" style="--k:var(--w-satir)">kırmızı</span> kablo → matris satırı → LED → matris sütunu → <span class="k" style="--k:var(--w-sutun)">turuncu</span> kablo → direnç → <span class="k" style="--k:var(--w-donus)">sarı</span> kablo → Arduino sütun pini <span class="mono">(LOW)</span></div>
+    <div class="legend">
+      <div class="item"><span class="swatch" style="background:linear-gradient(90deg,var(--w-satir) 50%,var(--w-satir2) 50%)"></span><span><b>Kırmızı</b> · satır kablosu<br>Arduino → matris. 8 adet, dirençsiz.</span></div>
+      <div class="item"><span class="swatch" style="background:linear-gradient(90deg,var(--w-sutun) 50%,var(--w-sutun2) 50%)"></span><span><b>Turuncu</b> · sütun kablosu<br>Matris → direnç. 8 adet.</span></div>
+      <div class="item"><span class="swatch res"></span><span><b>Direnç</b> · 220 Ω<br>Kırmızı-kırmızı-kahverengi halkalı.</span></div>
+      <div class="item"><span class="swatch" style="background:linear-gradient(90deg,var(--w-donus) 50%,var(--w-donus2) 50%)"></span><span><b>Sarı</b> · dönüş kablosu<br>Direnç → Arduino. 8 adet.</span></div>
+      <div class="item"><span class="swatch" style="background:var(--w-gnd)"></span><span><b>Siyah</b> · GND<br>Arduino GND, buton, buzzer. 3 adet.</span></div>
+      <div class="item"><span class="swatch" style="background:var(--w-buton)"></span><span><b>Yeşil</b> · buton → A4</span></div>
+      <div class="item"><span class="swatch" style="background:var(--w-buzzer)"></span><span><b>Mavi</b> · buzzer → A5</span></div>
+    </div>
+    <p class="note">Her rengin açık ve koyu tonu var: yan yana kablolar farklı tonda çizildi, karışmasın diye. Turuncu kabloların üstündeki küçük etiket, kablonun hangi delikten geldiğini gösterir. Sette her renkten yeterli kablo olmayabilir. Renkler şemayı okumak için; gerçekte aynı gruptaki kabloları mümkün olduğunca aynı renkte tutman yeterli.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Tek kural: soldan sağa sırayla</h2>
+    <div class="rule">
+      <div class="item"><span class="eyebrow">Alt sıra · a5 → a12</span><b>D2 · D3 · D4 · D5 · D6 · D7 · D8 · D9</b></div>
+      <div class="item"><span class="eyebrow">Üst sıra · j5 → j12</span><b>D10 · D11 · D12 · D13 · A0 · A1 · A2 · A3</b></div>
+      <div class="item"><span class="eyebrow">Direnç takılan 8 delik</span><b>a7 · a8 · a10 · j5 · j6 · j8 · j10 · j11</b></div>
+    </div>
+    <div class="tables">
+      <table aria-label="Alt sıra bağlantıları">
+        <thead><tr><th>Delik</th><th>Yol</th><th>Arduino</th></tr></thead>
+        <tbody id="tA"></tbody>
+      </table>
+      <table aria-label="Üst sıra bağlantıları">
+        <thead><tr><th>Delik</th><th>Yol</th><th>Arduino</th></tr></thead>
+        <tbody id="tJ"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="head">
+    <span class="eyebrow">3 kişilik grup · herkes aynı anda çalışır</span>
+    <h2>Rol kartları</h2>
+  </section>
+  <div class="roles">
+    <article class="role">
+      <span class="num">Rol 1</span>
+      <h3>Matrisçi</h3>
+      <ul>
+        <li>Matrisi tak: yazı sana baksın, bacaklar <span class="mono">b5–b12</span> ve <span class="mono">i5–i12</span>.</li>
+        <li>Düz kablolar: <span class="mono">a5→D2, a6→D3, a9→D6, a11→D8, a12→D9</span></li>
+        <li><span class="mono">j7→D12, j9→A0, j12→A3</span></li>
+        <li>Arduino <span class="mono">GND</span> → en üstteki − hattı</li>
+      </ul>
+      <span class="count">9 kablo</span>
+    </article>
+    <article class="role">
+      <span class="num">Rol 2</span>
+      <h3>Üst dirençler</h3>
+      <ul>
+        <li>Her satır: delikten kablo j sırasına → direnç i sırasında → Arduino kablosu j sırasından</li>
+        <li><span class="mono">j5 → j41 · i41–i45 · j45 → D10</span></li>
+        <li><span class="mono">j6 → j35 · i35–i39 · j39 → D11</span></li>
+        <li><span class="mono">j8 → j29 · i29–i33 · j33 → D13</span></li>
+        <li><span class="mono">j10 → j23 · i23–i27 · j27 → A1</span></li>
+        <li><span class="mono">j11 → j17 · i17–i21 · j21 → A2</span></li>
+      </ul>
+      <span class="count">5 direnç · 10 kablo · soldaki delik en uzağa gider</span>
+    </article>
+    <article class="role">
+      <span class="num">Rol 3</span>
+      <h3>Alt dirençler + buton + buzzer</h3>
+      <ul>
+        <li><span class="mono">a7 → b29 · d29–d33 · b33 → D4</span></li>
+        <li><span class="mono">a8 → b23 · d23–d27 · b27 → D5</span></li>
+        <li><span class="mono">a10 → b17 · d17–d21 · b21 → D7</span></li>
+        <li>Buton bacakları <span class="mono">d47 d49 g47 g49</span>. <span class="mono">b47 → A4</span>, <span class="mono">h49 → −</span></li>
+        <li>Pasif buzzer: uzun bacak <span class="mono">h54</span>, kısa <span class="mono">h57</span>. <span class="mono">j54 → A5</span>, <span class="mono">j57 → −</span></li>
+      </ul>
+      <span class="count">3 direnç · 10 kablo</span>
+    </article>
+  </div>
+
+  <section class="checks">
+    <div class="panel">
+      <h2>Güç vermeden önce</h2>
+      <ol>
+        <li>16 delikte (a5–a12, j5–j12) birer bağlantı var.</li>
+        <li>8 direncin iki bacağı da farklı sütunda (örneğin i17 ve i21), bacaklar birbirine değmiyor.</li>
+        <li>Kablo uçları tam oturmuş, hafifçe çekince çıkmıyor.</li>
+        <li>GND, <span class="mono">h49</span> ve <span class="mono">j57</span> en üstteki − hattında.</li>
+      </ol>
+    </div>
+    <div class="panel">
+      <h2>Test</h2>
+      <ol>
+        <li><kbd>matris_test.ino</kbd> yüklenir: önce 8 yatay, sonra 8 dikey çizgi yanmalı.</li>
+        <li>Bir çizgi yanmıyorsa Seri Monitör (9600) o anki hattın deliğini yazar: o kabloyu bastır.</li>
+        <li>Hiçbir şey yanmıyorsa kodda <span class="mono">SATIR_ANOT</span> değeri değiştirilir.</li>
+        <li>Hepsi yanıyorsa oyun kodu yüklenir.</li>
+      </ol>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  // ---- Bağlantı verisi (koddaki pin listeleriyle birebir) ----
+  const A = [ // a5..a12  -> D2..D9
+    {h:"a5",p:"D2",r:false,f:"Satır 5"},{h:"a6",p:"D3",r:false,f:"Satır 7"},
+    {h:"a7",p:"D4",r:true ,f:"Sütun 2",z:29},{h:"a8",p:"D5",r:true ,f:"Sütun 3",z:23},
+    {h:"a9",p:"D6",r:false,f:"Satır 8"},{h:"a10",p:"D7",r:true ,f:"Sütun 5",z:17},
+    {h:"a11",p:"D8",r:false,f:"Satır 6"},{h:"a12",p:"D9",r:false,f:"Satır 3"}];
+  const J = [ // j5..j12 -> D10..A3
+    {h:"j5",p:"D10",r:true ,f:"Sütun 8",z:41},{h:"j6",p:"D11",r:true ,f:"Sütun 7",z:35},
+    {h:"j7",p:"D12",r:false,f:"Satır 2"},{h:"j8",p:"D13",r:true ,f:"Sütun 1",z:29},
+    {h:"j9",p:"A0",r:false,f:"Satır 4"},{h:"j10",p:"A1",r:true ,f:"Sütun 6",z:23},
+    {h:"j11",p:"A2",r:true ,f:"Sütun 4",z:17},{h:"j12",p:"A3",r:false,f:"Satır 1"}];
+
+  function yol(o){ const up=o.h[0]==="j", a=up?"j":"b", r=up?"i":"d";
+    return `${a}${o.z} · direnç ${r}${o.z}–${r}${o.z+4} · ${a}${o.z+4}`; }
+  function fill(id, list){
+    const tb = document.getElementById(id);
+    tb.innerHTML = list.map(o =>
+      `<tr class="${o.r?'res':'row'}"><td class="pin">${o.h}</td><td>${o.r?`<span class="res-tag">${yol(o)}</span>`:'düz kablo'}</td><td class="pin">${o.p}</td></tr>`).join("");
+  }
+  fill("tA", A); fill("tJ", J);
+
+  // ---- Breadboard çizimi ----
+  const svg = document.getElementById("bb");
+  const NS = "http://www.w3.org/2000/svg";
+  const P = 10.6, X0 = 20, COLS = 60;
+  const x = c => X0 + (c - 1) * P;
+  // satır y'leri (yukarıdan aşağı): üst ray -, +, j..f, kanal, e..a, alt ray -, +
+  const Y0 = 150;
+  const ROWY = {};
+  ["j","i","h","g","f"].forEach((r,i)=> ROWY[r] = Y0 + i*P);
+  ["e","d","c","b","a"].forEach((r,i)=> ROWY[r] = Y0 + 5*P + 12 + i*P);
+  const railTopMinus = Y0 - 30, railTopPlus = Y0 - 20;
+  const railBotMinus = ROWY.a + 22, railBotPlus = ROWY.a + 32;
+
+  function el(name, attrs, parent){ const e = document.createElementNS(NS, name);
+    for (const k in attrs) e.setAttribute(k, attrs[k]); (parent||svg).appendChild(e); return e; }
+  function txt(s, attrs){ const t = el("text", attrs); t.textContent = s; return t; }
+  const css = v => `var(${v})`;
+
+  // kart zemini
+  el("rect",{x:6,y:railTopMinus-14,width:x(COLS)+14,height:railBotPlus-railTopMinus+28,rx:8,fill:css("--board"),stroke:css("--line")});
+  // raylar
+  [[railTopMinus,"--rail-blue","−"],[railTopPlus,"--rail-red","+"],[railBotMinus,"--rail-blue","−"],[railBotPlus,"--rail-red","+"]].forEach(([yy,c,s])=>{
+    el("line",{x1:x(1),x2:x(COLS),y1:yy+ (s==="−"&&yy<Y0? -5: s==="+"&&yy<Y0? 5 : s==="−"? -5 : 5),y2:yy+(s==="−"&&yy<Y0?-5:s==="+"&&yy<Y0?5:s==="−"?-5:5),stroke:css(c),"stroke-width":1});
+    for(let c2=1;c2<=COLS;c2++) if(c2%6!==0) el("rect",{x:x(c2)-1.4,y:yy-1.4,width:2.8,height:2.8,fill:css("--hole")});
+    txt(s,{x:8,y:yy+3,"font-size":8,fill:css(c)});
+  });
+  // delikler
+  Object.keys(ROWY).forEach(r=>{ for(let c=1;c<=COLS;c++) el("rect",{x:x(c)-1.4,y:ROWY[r]-1.4,width:2.8,height:2.8,fill:css("--hole")}); });
+  // harf ve sayı etiketleri
+  // harfler: sol ve sağ kenarda, her satır
+  Object.keys(ROWY).forEach(r=>{
+    txt(r,{x:x(1)-9, y:ROWY[r]+2.5,"font-size":7,"text-anchor":"middle",fill:css("--muted")});
+    txt(r,{x:x(COLS)+9,y:ROWY[r]+2.5,"font-size":7,"text-anchor":"middle",fill:css("--muted")});
+  });
+  // sayılar: 1'den 60'a hepsi, üst yarının üstünde, alt yarının altında ve ortadaki kanalda
+  const sayiY = [ROWY.j-9, ROWY.a+10, (ROWY.f+ROWY.e)/2+2.2];
+  for (let c=1;c<=COLS;c++) sayiY.forEach((yy,i)=>{
+    const t = txt(String(c),{x:x(c),y:yy+2,"font-size":c>=10?5:5.6,"text-anchor":"middle",
+      fill:css(i===2?"--muted":"--ink"),"font-weight":(c%5===0)?600:400,opacity:i===2?.9:.75});
+  });
+
+  // MATRİS gövdesi
+  const mx1 = x(5) - 1.6*P, mx2 = x(12) + 1.6*P;
+  el("rect",{x:mx1,y:ROWY.i-4,width:mx2-mx1,height:ROWY.b-ROWY.i+8,rx:2,fill:css("--matrix")});
+  for(let i=0;i<8;i++) for(let k=0;k<8;k++)
+    el("circle",{cx:mx1+7+i*((mx2-mx1-14)/7),cy:ROWY.i+2+k*((ROWY.b-ROWY.i-4)/7),r:2.6,fill:css("--matrix-dot"),opacity:.75});
+  // bacaklar
+  for(let c=5;c<=12;c++){ el("circle",{cx:x(c),cy:ROWY.b,r:2,fill:css("--hole"),stroke:css("--ink"),"stroke-width":.6});
+                          el("circle",{cx:x(c),cy:ROWY.i,r:2,fill:css("--hole"),stroke:css("--ink"),"stroke-width":.6}); }
+
+  // ---- Yardımcılar ----
+  const ACIK_YAZI = ["--w-donus","--w-donus2","--w-satir2"];
+  function tag(cx, cy, label, color, w){
+    w = w || 16; const h = 12;
+    el("rect",{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:2.5,fill:css(color)});
+    txt(label,{x:cx,y:cy+2.8,"font-size":6.6,"text-anchor":"middle",
+      fill:css(ACIK_YAZI.includes(color)?"--tag-ink-acik":"--tag-ink"),"font-weight":600});
+  }
+  function hat(points, color, w){   // dik köşeli kablo
+    el("polyline",{points:points.map(p=>p.join(",")).join(" "),fill:"none",stroke:css(color),
+      "stroke-width":w||2,"stroke-linejoin":"round","stroke-linecap":"round"});
+  }
+  function ok(x1,y1,x2,y2,color){    // akım yönü oku (x1,y1)->(x2,y2) ortasında
+    const mx=(x1+x2)/2, my=(y1+y2)/2, a=Math.atan2(y2-y1,x2-x1)*180/Math.PI;
+    el("path",{d:"M-3.2,-2.8 L3.2,0 L-3.2,2.8 Z",transform:`translate(${mx},${my}) rotate(${a})`,fill:css(color)});
+  }
+  function resistor(x1,y1,x2,y2){
+    const mx=(x1+x2)/2, my=(y1+y2)/2;
+    el("line",{x1,y1,x2,y2,stroke:css("--res-line"),"stroke-width":1.2});
+    const g=el("g",{transform:`translate(${mx},${my})`});
+    el("rect",{x:-9,y:-3.5,width:18,height:7,rx:3,fill:css("--res-body"),stroke:css("--res-line"),"stroke-width":.8},g);
+    [[-5,"#c0392b"],[-2,"#c0392b"],[1,"#6b4423"],[5,"#c9a227"]].forEach(([bx,c])=> el("rect",{x:bx,y:-3.5,width:1.8,height:7,fill:c},g));
+  }
+  function nokta(cx,cy,color){ el("circle",{cx,cy,r:2.6,fill:css(color)}); }
+  function etiket(cx,cy,s){ const w=s.length*4.2+6;
+    el("rect",{x:cx-w/2,y:cy-5,width:w,height:10,rx:2,fill:css("--paper"),stroke:css("--line"),"stroke-width":.6});
+    txt(s,{x:cx,y:cy+2.4,"font-size":6.2,"text-anchor":"middle",fill:css("--ink")}); }
+
+  // ---- Seviyeler (y) ----
+  const ustBant  = railTopMinus - 26;        // üstteki pin etiketleri
+  const altBant1 = railBotPlus + 26, altBant2 = railBotPlus + 42;
+  const ustSerit = k => ustBant - 18 - k*9;  // turuncu kablo şeritleri (iç -> dış)
+  const altSerit = k => altBant2 + 18 + k*9;
+
+  function cizTaraf(list, ust){
+    const rowY = ust ? ROWY.j : ROWY.a, half = ust ? "j" : "b", rrow = ust ? "i" : "d";
+    // kırmızılar (satır): delik -> hemen dışarıdaki etiket; yan yana olanlar kademeli
+    const reds = list.filter(o=>!o.r).sort((p,q)=>parseInt(p.h.slice(1))-parseInt(q.h.slice(1)));
+    let onceki = -99, kademe = 0;
+    reds.forEach((o,i)=>{
+      const c=parseInt(o.h.slice(1)), hx=x(c);
+      kademe = (c-onceki===1 && kademe===0) ? 1 : 0; onceki=c;
+      const ty = ust ? ustBant : (kademe ? altBant2 : altBant1);
+      const color = i%2 ? "--w-satir2" : "--w-satir";
+      hat([[hx,rowY],[hx,ty+(ust?6:-6)]], color);
+      ok(hx, ty+(ust?6:-6), hx, rowY, color);
+      nokta(hx,rowY,color); tag(hx,ty,o.p,color);
+    });
+    // dirençli hatlar: iç içe dikdörtgen kablolar (soldaki delik en dış şeride)
+    const cols = list.filter(o=>o.r).sort((p,q)=>parseInt(p.h.slice(1))-parseInt(q.h.slice(1)));
+    const n = cols.length;
+    cols.forEach((o,i)=>{
+      const c=parseInt(o.h.slice(1)), hx=x(c), k=n-1-i;      // en soldaki en dışta
+      const sy = ust ? ustSerit(k) : altSerit(k);
+      const zx=x(o.z), zy=ROWY[half], ex=x(o.z+4), ry=ROWY[rrow];
+      const turuncu = i%2 ? "--w-sutun2" : "--w-sutun";
+      const sari    = i%2 ? "--w-donus2" : "--w-donus";
+      // turuncu: delik -> şerit -> direnç bölgesinin başı
+      hat([[hx,rowY],[hx,sy],[zx,sy],[zx,zy]], turuncu);
+      ok(hx,sy,zx,sy,turuncu);
+      etiket(zx-22, sy, o.h);
+      nokta(hx,rowY,turuncu); nokta(zx,zy,turuncu);
+      // direnç
+      el("line",{x1:zx,y1:zy,x2:zx,y2:ry,stroke:css("--res-line"),"stroke-width":1,"stroke-dasharray":"2 2"});
+      resistor(zx,ry,ex,ry);
+      el("line",{x1:ex,y1:ry,x2:ex,y2:zy,stroke:css("--res-line"),"stroke-width":1,"stroke-dasharray":"2 2"});
+      // sarı: direncin sonu -> Arduino etiketi
+      const ty = ust ? ustBant : altBant1;
+      hat([[ex,zy],[ex,ty+(ust?6:-6)]], sari);
+      ok(ex,(zy+ty)/2+(ust?6:-6),ex,ty+(ust?6:-6),sari);
+      nokta(ex,zy,sari); tag(ex,ty,o.p,sari);
+    });
+  }
+  cizTaraf(J, true);
+  cizTaraf(A, false);
+
+  // GND: Arduino GND -> en üstteki − hattı (sol uçta)
+  hat([[x(2),railTopMinus],[x(2),ustBant+6]],"--w-gnd");
+  tag(x(2), ustBant, "GND", "--w-gnd", 20);
+
+  // BUTON (d47 d49 g47 g49), b47 -> A4, h49 -> −
+  el("rect",{x:x(47)-4,y:ROWY.g-4,width:x(49)-x(47)+8,height:ROWY.d-ROWY.g+8,rx:3,fill:css("--paper"),stroke:css("--w-buton"),"stroke-width":1.4});
+  el("circle",{cx:(x(47)+x(49))/2,cy:(ROWY.g+ROWY.d)/2,r:7,fill:css("--w-buton"),opacity:.85});
+  ["g","d"].forEach(r=>[47,49].forEach(c=> el("circle",{cx:x(c),cy:ROWY[r],r:2,fill:css("--w-buton")})));
+  hat([[x(47),ROWY.b],[x(47),altBant1-6]],"--w-buton"); nokta(x(47),ROWY.b,"--w-buton");
+  tag(x(47), altBant1, "A4", "--w-buton");
+  hat([[x(49),ROWY.h],[x(49),railTopMinus]],"--w-gnd"); nokta(x(49),ROWY.h,"--w-gnd");
+  txt("buton",{x:(x(47)+x(49))/2,y:ROWY.d+16,"font-size":6.5,"text-anchor":"middle",fill:css("--muted")});
+
+  // BUZZER (h54 +, h57 −), j54 -> A5, j57 -> −
+  el("circle",{cx:(x(54)+x(57))/2,cy:ROWY.h,r:17,fill:css("--matrix"),opacity:.9});
+  el("circle",{cx:(x(54)+x(57))/2,cy:ROWY.h,r:3,fill:css("--board")});
+  el("circle",{cx:x(54),cy:ROWY.h,r:2,fill:css("--rail-red")});
+  el("circle",{cx:x(57),cy:ROWY.h,r:2,fill:css("--hole")});
+  txt("+",{x:x(54)-6,y:ROWY.h-6,"font-size":8,fill:css("--rail-red")});
+  hat([[x(54),ROWY.j],[x(54),ustBant+6]],"--w-buzzer"); nokta(x(54),ROWY.j,"--w-buzzer");
+  tag(x(54), ustBant, "A5", "--w-buzzer");
+  hat([[x(57),ROWY.j],[x(57),railTopMinus]],"--w-gnd"); nokta(x(57),ROWY.j,"--w-gnd");
+  txt("pasif buzzer",{x:(x(54)+x(57))/2,y:ROWY.e+6,"font-size":6.5,"text-anchor":"middle",fill:css("--muted")});
+
+  // viewBox'ı içeriğe göre ayarla
+  svg.setAttribute("viewBox", `0 ${ustSerit(4)-14} ${x(COLS)+28} ${altSerit(2)+14-(ustSerit(4)-14)}`);
+})();
+</script>
+
+</body></html>
