@@ -4,7 +4,8 @@
   ================================================================
    Donanım : Arduino UNO, 1088BS 8x8 matris, 8 x 220 ohm, buton, buzzer
    Bağlantı: a5..a12 -> D2..D9, j5..j12 -> D10..D13, A0..A3 (sırayla)
-             a7, a8, a10, j5, j6, j8, j10, j11'de 220 ohm direnç
+             a7, a8, a10, j5, j6, j8, j10, j11 hatlarında araya 220 ohm direnç
+              girer (delik -> kablo -> direnç -> kablo -> Arduino)
              buton A4 (GND'ye), buzzer A5 (GND'ye)
 
    ÖĞRENCİ SÜRÜMÜNDEN FARKLARI
@@ -27,7 +28,7 @@ const byte BUZZER = A5;
 
 // ---------------- AYARLAR ----------------
 const bool SATIR_ANOT   = true;   // 1088BS: true. Hiç LED yanmazsa false
-const int  DONUS_DERECE = 180 ;      // taban kenarı: 0, 90, 180, 270 (her sayı olur: 450 -> 90)
+const int  DONUS_DERECE = 0;         // taban kenarı: 0, 90, 180, 270 (her sayı olur: 450 -> 90)
 const bool AYNA         = false;  // "L3" ayna gibi görünüyorsa true
 const byte BASLANGIC_CAN = 3, MAKS_CAN = 5, SEVIYE_SAYISI = 9;
 

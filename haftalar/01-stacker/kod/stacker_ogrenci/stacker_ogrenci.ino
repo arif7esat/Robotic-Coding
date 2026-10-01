@@ -7,8 +7,8 @@
    Bağlantı   : (Matris bacakları breadboard'da a5-a12 ve j5-j12 deliklerine bağlı)
                 Alt sıra  a5 -> a12  soldan sağa:  D2, D3, D4, D5, D6, D7, D8, D9
                 Üst sıra  j5 -> j12  soldan sağa:  D10, D11, D12, D13, A0, A1, A2, A3
-                a7, a8, a10, j5, j6, j8, j10, j11 deliklerinde kablo yerine
-                220 ohm direnç var (direncin ucuna dişi-erkek kablo takılır)
+                a7, a8, a10, j5, j6, j8, j10, j11 hatlarında araya
+                 220 ohm direnç girer (delik -> kablo -> direnç -> kablo -> Arduino)
                 Buton  -> A4 ve GND
                 Buzzer -> A5 ve GND
 
