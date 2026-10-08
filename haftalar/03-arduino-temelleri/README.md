@@ -26,16 +26,18 @@ const int SUTUN[8] = {13, 4, 5, A2, 7, A1, 11, 10};  // sütun 1..8 (soldan sağ
 
 ## Projeler
 
-| # | Proje | Komutlar / kavram | PDF bölümü |
-|:---:|---|---|:---:|
-| T1 | [Tek LED](kod/t1_tek_led/t1_tek_led.ino) | `pinMode`, `digitalWrite`, `delay` | 2–4 |
-| T2 | [Dizi ile LED seç](kod/t2_dizi_ile_led/t2_dizi_ile_led.ino) | dizi, `const`, `for`, kendi fonksiyonun | 7, 9, 10 |
-| T3 | [Sütun ve akım](kod/t3_sutun_ve_akim/t3_sutun_ve_akim.ino) | iç içe `for`, akım paylaşımı, güvenlik | 3, 9 |
-| T4 | [Butonu oku](kod/t4_buton_oku/t4_buton_oku.ino) | `digitalRead`, `INPUT_PULLUP`, `Serial` | 4, 11 |
-| T5 | [Işıklı piyano](kod/t5_buzzer_piyano/t5_buzzer_piyano.ino) | `tone`, dizi, ses + ışık | 7, 11 |
-| T6 | [Nefes alan LED](kod/t6_pwm_parlaklik/t6_pwm_parlaklik.ino) | `analogWrite`, PWM, ters mantık | 5 |
-| T7 | [delay mi, millis mi?](kod/t7_millis_ile_bekleme/t7_millis_ile_bekleme.ino) | `millis`, `unsigned long`, `bool` | 6 |
-| T8 | [Göz yanılması](kod/t8_goz_yanilmasi/t8_goz_yanilmasi.ino) | çoklama, görme sürekliliği | — |
+| # | Proje | Komutlar / kavram | Konu (PDF) | Devre ve montaj |
+|:---:|---|---|:---:|:---:|
+| T1 | [Tek LED](kod/t1_tek_led/t1_tek_led.ino) | `pinMode`, `digitalWrite`, `delay` | 2–4 | [📐 PDF](kod/t1_tek_led/T1_Devre_ve_Montaj.pdf) |
+| T2 | [Dizi ile LED seç](kod/t2_dizi_ile_led/t2_dizi_ile_led.ino) | dizi, `const`, `for`, kendi fonksiyonun | 7, 9, 10 | [📐 PDF](kod/t2_dizi_ile_led/T2_Devre_ve_Montaj.pdf) |
+| T3 | [Sütun ve akım](kod/t3_sutun_ve_akim/t3_sutun_ve_akim.ino) | iç içe `for`, akım paylaşımı, güvenlik | 3, 9 | [📐 PDF](kod/t3_sutun_ve_akim/T3_Devre_ve_Montaj.pdf) |
+| T4 | [Butonu oku](kod/t4_buton_oku/t4_buton_oku.ino) | `digitalRead`, `INPUT_PULLUP`, `Serial` | 4, 11 | [📐 PDF](kod/t4_buton_oku/T4_Devre_ve_Montaj.pdf) |
+| T5 | [Işıklı piyano](kod/t5_buzzer_piyano/t5_buzzer_piyano.ino) | `tone`, dizi, ses + ışık | 7, 11 | [📐 PDF](kod/t5_buzzer_piyano/T5_Devre_ve_Montaj.pdf) |
+| T6 | [Nefes alan LED](kod/t6_pwm_parlaklik/t6_pwm_parlaklik.ino) | `analogWrite`, PWM, ters mantık | 5 | [📐 PDF](kod/t6_pwm_parlaklik/T6_Devre_ve_Montaj.pdf) |
+| T7 | [delay mi, millis mi?](kod/t7_millis_ile_bekleme/t7_millis_ile_bekleme.ino) | `millis`, `unsigned long`, `bool` | 6 | [📐 PDF](kod/t7_millis_ile_bekleme/T7_Devre_ve_Montaj.pdf) |
+| T8 | [Göz yanılması](kod/t8_goz_yanilmasi/t8_goz_yanilmasi.ino) | çoklama, görme sürekliliği | — | [📐 PDF](kod/t8_goz_yanilmasi/T8_Devre_ve_Montaj.pdf) |
+
+Her proje klasöründe, **sadece o kodun kullandığı parçalarla** kurulan ayrı bir devre PDF'i var: mantıksal şema, tasarım gerekçeleri, breadboard yerleşimi, resimli adım adım montaj, akımın yolu, kontrol listesi ve hata tablosu.
 
 Her dosyanın başında **9. sınıf** ve **10. sınıf** görevleri var. T4, T7 ve T8'de öğrencinin tek bir değeri değiştirip farkı gözlemlediği **deneyler** var.
 
