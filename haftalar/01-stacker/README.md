@@ -34,6 +34,8 @@
 
 ### Şema
 
+📐 **Resimli adım adım montaj:** [Stacker_Devre_ve_Montaj.pdf](belgeler/Stacker_Devre_ve_Montaj.pdf) — montaj kartındaki yerleşimin her adımı ayrı resimde, şema, akımın yolu, kontrol listesi ve terimlerin hikâyeleriyle.
+
 ![Devre şeması](gorseller/sema.png)
 
 ### Kablo tablosu

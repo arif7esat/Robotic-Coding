@@ -44,16 +44,18 @@ Koordinat: **x = sütun** (0 en sol → 7 en sağ), **y = satır** (0 en alt →
 
 ## Projeler (kolaydan zora)
 
-| # | Proje | Yeni öğrenilen kavram |
-|:---:|---|---|
-| 1 | [İlk Işık](kod/p1_ilk_isik/p1_ilk_isik.ino) | `setup`/`loop`, komut çağırmak, koordinat, `delay` |
-| 2 | [Yürüyen Nokta](kod/p2_yuruyen_nokta/p2_yuruyen_nokta.ino) | Değişken, `x = x + 1`, `if` |
-| 3 | [Çizgi Çiz](kod/p3_cizgi_ciz/p3_cizgi_ciz.ino) | `for` döngüsü, iç içe döngü |
-| 4 | [Emoji ve Animasyon](kod/p4_emoji_animasyon/p4_emoji_animasyon.ino) | Dizi (resim), animasyon kareleri |
-| 5 | [Butonlu Yüz](kod/p5_butonlu_yuz/p5_butonlu_yuz.ino) | Giriş (buton), `if / else` |
-| 6 | [Tıklama Sayacı](kod/p6_tiklama_sayaci/p6_tiklama_sayaci.ino) | Sayaç, `/` ve `%`, Seri Monitör |
-| 7 | [Elektronik Zar](kod/p7_zar/p7_zar.ino) | Kendi fonksiyonunu yazmak, `random`, `else if` |
-| 8 | [Ortaya Durdur](kod/p8_ortaya_durdur/p8_ortaya_durdur.ino) | Hepsini birleştiren ilk oyun → Stacker'a köprü |
+| # | Proje | Yeni öğrenilen kavram | Devre ve montaj |
+|:---:|---|---|:---:|
+| 1 | [İlk Işık](kod/p1_ilk_isik/p1_ilk_isik.ino) | `setup`/`loop`, komut çağırmak, koordinat, `delay` | [📐 PDF](kod/p1_ilk_isik/P1_Devre_ve_Montaj.pdf) |
+| 2 | [Yürüyen Nokta](kod/p2_yuruyen_nokta/p2_yuruyen_nokta.ino) | Değişken, `x = x + 1`, `if` | [📐 PDF](kod/p2_yuruyen_nokta/P2_Devre_ve_Montaj.pdf) |
+| 3 | [Çizgi Çiz](kod/p3_cizgi_ciz/p3_cizgi_ciz.ino) | `for` döngüsü, iç içe döngü | [📐 PDF](kod/p3_cizgi_ciz/P3_Devre_ve_Montaj.pdf) |
+| 4 | [Emoji ve Animasyon](kod/p4_emoji_animasyon/p4_emoji_animasyon.ino) | Dizi (resim), animasyon kareleri | [📐 PDF](kod/p4_emoji_animasyon/P4_Devre_ve_Montaj.pdf) |
+| 5 | [Butonlu Yüz](kod/p5_butonlu_yuz/p5_butonlu_yuz.ino) | Giriş (buton), `if / else` | [📐 PDF](kod/p5_butonlu_yuz/P5_Devre_ve_Montaj.pdf) |
+| 6 | [Tıklama Sayacı](kod/p6_tiklama_sayaci/p6_tiklama_sayaci.ino) | Sayaç, `/` ve `%`, Seri Monitör | [📐 PDF](kod/p6_tiklama_sayaci/P6_Devre_ve_Montaj.pdf) |
+| 7 | [Elektronik Zar](kod/p7_zar/p7_zar.ino) | Kendi fonksiyonunu yazmak, `random`, `else if` | [📐 PDF](kod/p7_zar/P7_Devre_ve_Montaj.pdf) |
+| 8 | [Ortaya Durdur](kod/p8_ortaya_durdur/p8_ortaya_durdur.ino) | Hepsini birleştiren ilk oyun → Stacker'a köprü | [📐 PDF](kod/p8_ortaya_durdur/P8_Devre_ve_Montaj.pdf) |
+
+Her proje klasöründe, **sadece o projenin kullandığı parçalarla** (matris her zaman tam; buton ve buzzer sadece kullanılan projelerde) ayrı bir devre PDF'i var: şema, tasarım gerekçeleri, breadboard yerleşimi, resimli adım adım montaj, akımın yolu, kontrol listesi ve mavi "Kelimenin hikâyesi" kutuları.
 
 Her `.ino` dosyasının başında **9. sınıf** ve **10. sınıf** için ayrı görevler var. 9. sınıf görevleri çoğunlukla bir sayıyı/satırı değiştirmek; 10. sınıf görevleri yeni kod yazmayı gerektirir.
 
