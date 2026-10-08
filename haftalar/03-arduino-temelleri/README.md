@@ -39,6 +39,8 @@ const int SUTUN[8] = {13, 4, 5, A2, 7, A1, 11, 10};  // sütun 1..8 (soldan sağ
 
 Her proje klasöründe, **sadece o kodun kullandığı parçalarla** kurulan ayrı bir devre PDF'i var: mantıksal şema, tasarım gerekçeleri, breadboard yerleşimi, resimli adım adım montaj, akımın yolu, kontrol listesi ve hata tablosu.
 
+PDF'lerdeki **mavi "Kelimenin hikâyesi" kutuları** (toplam 20 terim: anot/katot, direnç/ohm, GND, pull-up, PWM, bit/bayt, piksel...) bir terimin kökenini ve o kökenden çıkan mantığı ~1 dakikada anlatır. Amaç ezber değil, "neden böyle denmiş?" sorusuyla sağlam temel.
+
 Her dosyanın başında **9. sınıf** ve **10. sınıf** görevleri var. T4, T7 ve T8'de öğrencinin tek bir değeri değiştirip farkı gözlemlediği **deneyler** var.
 
 **T8 köprü projedir:** Öğrenci matrisin aslında satır satır, çok hızlı yanıp söndüğünü kendi gözüyle keşfeder. 02. haftadaki `matris.h`'nin arka planda yaptığı iş tam olarak budur.
