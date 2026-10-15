@@ -1,0 +1,3175 @@
+{
+  "version": 1,
+  "author": "Robotic-Coding",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "id": "uno",
+      "type": "wokwi-arduino-uno",
+      "top": 260,
+      "left": -110,
+      "attrs": {}
+    },
+    {
+      "id": "baslik",
+      "type": "wokwi-text",
+      "left": 460,
+      "top": -255,
+      "attrs": {
+        "text": "1088BS 8×8 LED MATRİSİN İÇİ  ·  64 LED"
+      }
+    },
+    {
+      "id": "aciklama",
+      "type": "wokwi-text",
+      "left": 460,
+      "top": -230,
+      "attrs": {
+        "text": "🔴 A + = ANOT (+) bacağı: LED'in SAĞ bacağı → KIRMIZI yatay tele (SATIR) bağlı\n🔵 K − = KATOT (−) bacağı: LED'in SOL bacağı → MAVİ dikey tele (SÜTUN) bağlı"
+      }
+    },
+    {
+      "id": "L11",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L12",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L13",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L14",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L15",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L16",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L17",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L18",
+      "type": "wokwi-led",
+      "top": -120,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L21",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L22",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L23",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L24",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L25",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L26",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L27",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L28",
+      "type": "wokwi-led",
+      "top": 25,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L31",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L32",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L33",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L34",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L35",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L36",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L37",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L38",
+      "type": "wokwi-led",
+      "top": 170,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L41",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L42",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L43",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L44",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L45",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L46",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L47",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L48",
+      "type": "wokwi-led",
+      "top": 315,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L51",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L52",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L53",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L54",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L55",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L56",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L57",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L58",
+      "type": "wokwi-led",
+      "top": 460,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L61",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L62",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L63",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L64",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L65",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L66",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L67",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L68",
+      "type": "wokwi-led",
+      "top": 605,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L71",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L72",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L73",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L74",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L75",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L76",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L77",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L78",
+      "type": "wokwi-led",
+      "top": 750,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L81",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 470,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L82",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 645,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L83",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 820,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L84",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 995,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L85",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 1170,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L86",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 1345,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L87",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 1520,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "L88",
+      "type": "wokwi-led",
+      "top": 895,
+      "left": 1695,
+      "attrs": {
+        "color": "red",
+        "fps": "200"
+      }
+    },
+    {
+      "id": "tK11",
+      "type": "wokwi-text",
+      "left": 384,
+      "top": -90,
+      "attrs": {
+        "text": "katot (K −)"
+      }
+    },
+    {
+      "id": "tA11",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": -90,
+      "attrs": {
+        "text": "(A +) anot"
+      }
+    },
+    {
+      "id": "tK12",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA12",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK13",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA13",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK14",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA14",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK15",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA15",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK16",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA16",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK17",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA17",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK18",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": -90,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA18",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": -90,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK21",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA21",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK22",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA22",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK23",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA23",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK24",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA24",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK25",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA25",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK26",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA26",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK27",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA27",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK28",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 55,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA28",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 55,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK31",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA31",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK32",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA32",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK33",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA33",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK34",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA34",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK35",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA35",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK36",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA36",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK37",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA37",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK38",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 200,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA38",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 200,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK41",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA41",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK42",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA42",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK43",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA43",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK44",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA44",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK45",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA45",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK46",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA46",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK47",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA47",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK48",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 345,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA48",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 345,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK51",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA51",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK52",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA52",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK53",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA53",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK54",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA54",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK55",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA55",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK56",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA56",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK57",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA57",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK58",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 490,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA58",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 490,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK61",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA61",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK62",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA62",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK63",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA63",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK64",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA64",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK65",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA65",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK66",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA66",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK67",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA67",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK68",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 635,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA68",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 635,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK71",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA71",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK72",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA72",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK73",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA73",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK74",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA74",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK75",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA75",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK76",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA76",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK77",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA77",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK78",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 780,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA78",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 780,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK81",
+      "type": "wokwi-text",
+      "left": 434,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA81",
+      "type": "wokwi-text",
+      "left": 500,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK82",
+      "type": "wokwi-text",
+      "left": 609,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA82",
+      "type": "wokwi-text",
+      "left": 675,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK83",
+      "type": "wokwi-text",
+      "left": 784,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA83",
+      "type": "wokwi-text",
+      "left": 850,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK84",
+      "type": "wokwi-text",
+      "left": 959,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA84",
+      "type": "wokwi-text",
+      "left": 1025,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK85",
+      "type": "wokwi-text",
+      "left": 1134,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA85",
+      "type": "wokwi-text",
+      "left": 1200,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK86",
+      "type": "wokwi-text",
+      "left": 1309,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA86",
+      "type": "wokwi-text",
+      "left": 1375,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK87",
+      "type": "wokwi-text",
+      "left": 1484,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA87",
+      "type": "wokwi-text",
+      "left": 1550,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "tK88",
+      "type": "wokwi-text",
+      "left": 1659,
+      "top": 925,
+      "attrs": {
+        "text": "K −"
+      }
+    },
+    {
+      "id": "tA88",
+      "type": "wokwi-text",
+      "left": 1725,
+      "top": 925,
+      "attrs": {
+        "text": "A +"
+      }
+    },
+    {
+      "id": "ts1",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": -58,
+      "attrs": {
+        "text": "satır 1  (+) → A3"
+      }
+    },
+    {
+      "id": "ts2",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 87,
+      "attrs": {
+        "text": "satır 2  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts3",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 232,
+      "attrs": {
+        "text": "satır 3  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts4",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 377,
+      "attrs": {
+        "text": "satır 4  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts5",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 522,
+      "attrs": {
+        "text": "satır 5  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts6",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 667,
+      "attrs": {
+        "text": "satır 6  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts7",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 812,
+      "attrs": {
+        "text": "satır 7  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "ts8",
+      "type": "wokwi-text",
+      "left": 1830,
+      "top": 957,
+      "attrs": {
+        "text": "satır 8  (+) bağlı değil"
+      }
+    },
+    {
+      "id": "tk1",
+      "type": "wokwi-text",
+      "left": 448,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 1\n(−) → 13"
+      }
+    },
+    {
+      "id": "tk2",
+      "type": "wokwi-text",
+      "left": 623,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 2\n(−) → 4"
+      }
+    },
+    {
+      "id": "tk3",
+      "type": "wokwi-text",
+      "left": 798,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 3\n(−)"
+      }
+    },
+    {
+      "id": "tk4",
+      "type": "wokwi-text",
+      "left": 973,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 4\n(−)"
+      }
+    },
+    {
+      "id": "tk5",
+      "type": "wokwi-text",
+      "left": 1148,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 5\n(−)"
+      }
+    },
+    {
+      "id": "tk6",
+      "type": "wokwi-text",
+      "left": 1323,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 6\n(−)"
+      }
+    },
+    {
+      "id": "tk7",
+      "type": "wokwi-text",
+      "left": 1498,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 7\n(−)"
+      }
+    },
+    {
+      "id": "tk8",
+      "type": "wokwi-text",
+      "left": 1673,
+      "top": -172,
+      "attrs": {
+        "text": "sütun 8\n(−)"
+      }
+    },
+    {
+      "id": "R1",
+      "type": "wokwi-resistor",
+      "top": 1080,
+      "left": 430,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "id": "tr1",
+      "type": "wokwi-text",
+      "left": 465,
+      "top": 1090,
+      "attrs": {
+        "text": "220 Ω"
+      }
+    },
+    {
+      "id": "R2",
+      "type": "wokwi-resistor",
+      "top": 1080,
+      "left": 605,
+      "rotate": 90,
+      "attrs": {
+        "value": "220"
+      }
+    },
+    {
+      "id": "tr2",
+      "type": "wokwi-text",
+      "left": 640,
+      "top": 1090,
+      "attrs": {
+        "text": "220 Ω"
+      }
+    }
+  ],
+  "connections": [
+    [
+      "L11:A",
+      "L12:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L12:A",
+      "L13:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L13:A",
+      "L14:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L14:A",
+      "L15:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L15:A",
+      "L16:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L16:A",
+      "L17:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L17:A",
+      "L18:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L21:A",
+      "L22:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L22:A",
+      "L23:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L23:A",
+      "L24:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L24:A",
+      "L25:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L25:A",
+      "L26:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L26:A",
+      "L27:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L27:A",
+      "L28:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L31:A",
+      "L32:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L32:A",
+      "L33:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L33:A",
+      "L34:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L34:A",
+      "L35:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L35:A",
+      "L36:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L36:A",
+      "L37:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L37:A",
+      "L38:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L41:A",
+      "L42:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L42:A",
+      "L43:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L43:A",
+      "L44:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L44:A",
+      "L45:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L45:A",
+      "L46:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L46:A",
+      "L47:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L47:A",
+      "L48:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L51:A",
+      "L52:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L52:A",
+      "L53:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L53:A",
+      "L54:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L54:A",
+      "L55:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L55:A",
+      "L56:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L56:A",
+      "L57:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L57:A",
+      "L58:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L61:A",
+      "L62:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L62:A",
+      "L63:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L63:A",
+      "L64:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L64:A",
+      "L65:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L65:A",
+      "L66:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L66:A",
+      "L67:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L67:A",
+      "L68:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L71:A",
+      "L72:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L72:A",
+      "L73:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L73:A",
+      "L74:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L74:A",
+      "L75:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L75:A",
+      "L76:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L76:A",
+      "L77:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L77:A",
+      "L78:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L81:A",
+      "L82:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L82:A",
+      "L83:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L83:A",
+      "L84:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L84:A",
+      "L85:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L85:A",
+      "L86:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L86:A",
+      "L87:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L87:A",
+      "L88:A",
+      "#e74c3c",
+      [
+        "v18",
+        "*",
+        "v18"
+      ]
+    ],
+    [
+      "L11:C",
+      "L21:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L21:C",
+      "L31:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L31:C",
+      "L41:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L41:C",
+      "L51:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L51:C",
+      "L61:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L61:C",
+      "L71:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L71:C",
+      "L81:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L12:C",
+      "L22:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L22:C",
+      "L32:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L32:C",
+      "L42:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L42:C",
+      "L52:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L52:C",
+      "L62:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L62:C",
+      "L72:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L72:C",
+      "L82:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L13:C",
+      "L23:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L23:C",
+      "L33:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L33:C",
+      "L43:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L43:C",
+      "L53:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L53:C",
+      "L63:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L63:C",
+      "L73:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L73:C",
+      "L83:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L14:C",
+      "L24:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L24:C",
+      "L34:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L34:C",
+      "L44:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L44:C",
+      "L54:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L54:C",
+      "L64:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L64:C",
+      "L74:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L74:C",
+      "L84:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L15:C",
+      "L25:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L25:C",
+      "L35:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L35:C",
+      "L45:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L45:C",
+      "L55:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L55:C",
+      "L65:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L65:C",
+      "L75:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L75:C",
+      "L85:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L16:C",
+      "L26:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L26:C",
+      "L36:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L36:C",
+      "L46:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L46:C",
+      "L56:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L56:C",
+      "L66:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L66:C",
+      "L76:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L76:C",
+      "L86:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L17:C",
+      "L27:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L27:C",
+      "L37:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L37:C",
+      "L47:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L47:C",
+      "L57:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L57:C",
+      "L67:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L67:C",
+      "L77:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L77:C",
+      "L87:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L18:C",
+      "L28:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L28:C",
+      "L38:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L38:C",
+      "L48:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L48:C",
+      "L58:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L58:C",
+      "L68:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L68:C",
+      "L78:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L78:C",
+      "L88:C",
+      "#2e86de",
+      [
+        "h-14",
+        "*",
+        "h-14"
+      ]
+    ],
+    [
+      "L11:A",
+      "uno:A3",
+      "red",
+      [
+        "v18",
+        "h-60",
+        "*"
+      ]
+    ],
+    [
+      "L81:C",
+      "R1:1",
+      "orange",
+      [
+        "h-14",
+        "*"
+      ]
+    ],
+    [
+      "R1:2",
+      "uno:13",
+      "gold",
+      [
+        "v20",
+        "*"
+      ]
+    ],
+    [
+      "L82:C",
+      "R2:1",
+      "orange",
+      [
+        "h-14",
+        "*"
+      ]
+    ],
+    [
+      "R2:2",
+      "uno:4",
+      "gold",
+      [
+        "v20",
+        "*"
+      ]
+    ]
+  ],
+  "dependencies": {}
+}
