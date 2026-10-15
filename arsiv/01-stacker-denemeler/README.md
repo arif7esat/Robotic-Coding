@@ -1,7 +1,7 @@
 # Stacker Denemeleri (Arşiv)
 
 > ⚠️ **Bu dosyalar eski pin düzeniyle çalışır** (`{2,3,4,5,6,7,8,9}` / `{10,11,12,13,A0,A1,A2,A3}`).
-> Güncel devreyle uyumlu kodlar → [haftalar/01-stacker/kod/](../../haftalar/01-stacker/kod/)
+> Güncel devreyle uyumlu kodlar → [3-stacker/](../../3-stacker/)
 
 Stacker'ın ilk fikirden son hâline kadar geçtiği yolun kayıtları. Her dosya bir deneme aşaması:
 
