@@ -15,6 +15,7 @@ Bölümleri **sırayla** takip et. Devre 1. bölümde adım adım kurulur, sonra
 | **1** | [**Arduino Temelleri**](1-arduino-temelleri/): tek LED'den tam 8×8 ekrana. `pinMode`, `digitalWrite`, buton, buzzer, PWM, `millis` | T01 → T12 | ★☆☆ |
 | **2** | [**Matris ile Kodlama**](2-matris-ile-kodlama/): hazır `matris.h` ile değişken, döngü, dizi, fonksiyon. Emoji, zar, ilk oyun | P1 → P8 | ★★☆ |
 | **3** | [**Stacker**](3-stacker/): kule dikme oyunu. Hepsini birleştiren final projesi | 1 oyun | ★★★ |
+| **4** | [**Sensörler**](4-sensorler/): sıfırdan, az kablolu yeni devreler. Arduino dış dünyayı ölçer: ışık, sıcaklık… `analogRead`, `map`, `tone` | S01 → | ★☆☆ |
 
 > İlk kez mi buradasın? → [Başlarken](rehber/BASLARKEN.md): Arduino IDE'yi kur, kodu indir, karta yükle.
 >
@@ -80,6 +81,7 @@ Ayrıntılar ve devre dosyaları → [wokwi-evde-dene/](wokwi-evde-dene/)
    p1_ilk_isik_cevap/          ← hemen altında: o dersin görev cevapları
    ...
 3-stacker/                  ← 3. bölüm: oyun kodları + kitapçık PDF'leri
+4-sensorler/                ← 4. bölüm: sensör dersleri (1. bölümdeki gibi Adım 1-4)
 wokwi-evde-dene/            ← tarayıcıda simülasyon: her dersin devresi (ders + görev çözümü)
 rehber/                     ← Başlarken, Sorun giderme, Sözlük, Arduino rehberleri
 arsiv/                      ← eski denemeler (derste kullanılmıyor)

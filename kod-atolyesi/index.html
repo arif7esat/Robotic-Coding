@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Kod Atölyesi</title>
+<style>
+:root{
+  --bg:#e9e7e1; --panel:#f7f6f2; --ink:#1d232b; --muted:#6b7079; --line:#d6d3ca;
+  --ed:#1b1f24; --ed2:#22272e; --edline:#2d333b; --gut:#5c6670;
+  --ok:#1f9d55; --okbg:#d9f5e3; --bad:#d6342c; --badbg:#fde0de;
+  --fn:#0b8f94; --pin:#d9680b; --num:#7c4dd6; --type:#2f6fd1; --op:#5b6470;
+  --mono:"SF Mono",ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);
+  font:16px/1.4 -apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow:hidden;
+  -webkit-user-select:none;user-select:none}
+button{font:inherit;color:inherit;cursor:pointer}
+
+/* ---------- üst bar ---------- */
+.top{height:76px;display:flex;align-items:center;gap:18px;padding:0 22px;background:var(--panel);
+  border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.2px;white-space:nowrap}
+.brand svg{width:34px;height:34px}
+.proj{display:flex;flex-direction:column;line-height:1.15;padding-left:18px;border-left:1px solid var(--line)}
+.proj small{color:var(--muted);font-size:12px;letter-spacing:.6px;text-transform:uppercase}
+.proj b{font-size:18px}
+.seviye{display:flex;background:#e2dfd7;border-radius:12px;padding:4px;gap:4px;margin-left:6px}
+.seviye button{border:0;background:transparent;padding:10px 18px;border-radius:9px;font-weight:700;font-size:15px;color:#555b63;min-height:44px}
+.seviye button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.sp{flex:1}
+.gosterge{display:flex;gap:6px;background:#14181d;border-radius:12px;padding:7px 8px;box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
+.g{min-width:86px;padding:2px 10px;border-right:1px solid #2a3038}
+.g:last-child{border-right:0}
+.g small{display:block;color:#7d8794;font-size:10px;letter-spacing:1.4px;font-weight:700}
+.g span{display:block;font:700 24px/1.1 var(--mono);color:#7cf0a0;text-shadow:0 0 8px rgba(124,240,160,.35);letter-spacing:1px}
+.g.seri span{color:#ffd166;text-shadow:0 0 8px rgba(255,209,102,.35)}
+.ikon{width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:#fff;display:grid;place-items:center}
+.ikon svg{width:22px;height:22px}
+
+/* ---------- ana alan ---------- */
+.ana{height:calc(100% - 76px);display:grid;grid-template-columns:minmax(0,63fr) minmax(0,37fr);gap:18px;padding:18px 22px 20px}
+.editor{display:flex;flex-direction:column;background:var(--ed);border-radius:14px;overflow:hidden;
+  box-shadow:0 10px 30px rgba(20,24,30,.18),0 1px 0 rgba(255,255,255,.04) inset;min-height:0}
+.sekme{display:flex;align-items:flex-end;background:#15191d;height:44px;padding:0 10px;gap:2px}
+.sekme div{background:var(--ed);color:#d6dde6;font:600 14px var(--mono);padding:11px 18px;border-radius:9px 9px 0 0;
+  display:flex;align-items:center;gap:8px}
+.sekme div i{width:8px;height:8px;border-radius:50%;background:#e0a100;display:inline-block}
+.sekme .yol{color:#6c7783;font:13px var(--mono);margin:0 0 12px auto;padding-right:8px}
+.kod{flex:1;overflow:auto;padding:16px 0 26px;position:relative;scroll-behavior:smooth}
+.kod::-webkit-scrollbar{width:12px}.kod::-webkit-scrollbar-thumb{background:#39414b;border-radius:6px;border:3px solid var(--ed)}
+.ln{display:flex;font:var(--fs,21px)/1.75 var(--mono);color:#d4dbe3;white-space:pre;min-height:calc(var(--fs,21px)*1.75)}
+.ln .no{width:58px;flex:none;text-align:right;padding-right:18px;color:var(--gut);font-size:.8em;line-height:inherit}
+.ln .tx{flex:1;padding-right:20px}
+.ln.aktif{background:rgba(255,255,255,.04)}
+.c-com{color:#6f7d8b;font-style:italic;font-size:.74em}.c-kw{color:#6cb6ff}.c-ty{color:#6cb6ff}.c-num{color:#f6b26b}
+.c-fn{color:#5fd7c4}.c-str{color:#a5d6a7}.c-pre{color:#c792ea}
+.durum{display:flex;align-items:center;gap:16px;height:36px;background:#0f7c86;color:#e6fbfb;font:600 13px var(--mono);padding:0 16px}
+.durum .sag{margin-left:auto;opacity:.85}
+
+/* boşluk */
+.slot{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:var(--w,4.5em);
+  height:calc(var(--fs,21px)*1.55);margin:0 2px;border:2px dashed #56616d;border-radius:8px;background:rgba(255,255,255,.03);
+  transition:border-color .15s,background .15s;position:relative;top:-1px}
+.slot.hedef{border-color:#ffd166;background:rgba(255,209,102,.14);border-style:solid}
+.slot.ok{border:2px solid var(--ok);background:rgba(31,157,85,.18);animation:yesil .5s ease 3}
+.slot.bad{border:2px solid var(--bad);background:rgba(214,52,44,.22);animation:kirmizi .55s ease-in-out infinite}
+@keyframes yesil{0%,100%{box-shadow:0 0 0 0 rgba(31,157,85,0)}50%{box-shadow:0 0 0 7px rgba(31,157,85,.55);background:rgba(31,157,85,.5)}}
+@keyframes kirmizi{0%,100%{box-shadow:0 0 0 0 rgba(214,52,44,0)}50%{box-shadow:0 0 0 7px rgba(214,52,44,.6);background:rgba(214,52,44,.55)}}
+.slot .parca{min-height:0;font-size:calc(var(--fs,21px)*.95);height:calc(var(--fs,21px)*1.35);padding:0 10px;margin:0;box-shadow:none;border-width:0 0 0 4px}
+.slot.ok .parca{background:transparent;color:#bff5d3;border-left-color:transparent;cursor:default}
+.slot.bad .parca{background:#3a1a19;color:#ffd7d4;border-left-color:var(--bad)}
+
+/* ---------- sağ panel ---------- */
+.sag-panel{display:flex;flex-direction:column;gap:14px;min-height:0}
+.kutu{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 0 #fff inset}
+.cekmece{flex:1;display:flex;flex-direction:column;min-height:0}
+.baslik{display:flex;align-items:baseline;justify-content:space-between;padding:14px 18px 0}
+.baslik h2{margin:0;font-size:18px}
+.baslik span{color:var(--muted);font-size:13px}
+.ipucu{color:var(--muted);font-size:13.5px;padding:4px 18px 0}
+.parcalar{flex:1;display:flex;flex-wrap:wrap;align-content:flex-start;gap:12px;padding:16px 18px 18px;overflow:auto;
+  border-radius:0 0 14px 14px}
+.parcalar.hedef{background:rgba(47,111,209,.06)}
+.parca{display:inline-flex;align-items:center;gap:8px;min-height:60px;padding:0 18px;border-radius:10px;
+  background:#fff;border:1px solid #cfccc3;border-left:6px solid var(--k,#888);
+  box-shadow:0 3px 0 #c9c5bb,0 6px 14px rgba(0,0,0,.08);font:700 22px var(--mono);color:#1f2630;
+  touch-action:none;cursor:grab;transition:transform .12s,box-shadow .12s,opacity .12s}
+.parca:active{cursor:grabbing}
+.parca.secili{transform:translateY(-3px);box-shadow:0 0 0 3px #ffd166,0 6px 0 #c9c5bb,0 10px 18px rgba(0,0,0,.14)}
+.parca.gidiyor{opacity:.25}
+.parca[data-k=fn]{--k:var(--fn)}.parca[data-k=pin]{--k:var(--pin)}.parca[data-k=num]{--k:var(--num)}
+.parca[data-k=type]{--k:var(--type)}.parca[data-k=op]{--k:var(--op)}
+.hayalet{position:fixed;left:0;top:0;z-index:50;pointer-events:none;transform-origin:center;
+  box-shadow:0 18px 40px rgba(0,0,0,.28),0 3px 0 #c9c5bb;transition:none}
+.lejant{display:flex;flex-wrap:wrap;gap:6px 14px;padding:0 18px 14px;color:var(--muted);font-size:12.5px}
+.lejant i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+.aciklama{padding:14px 18px 16px;min-height:150px}
+.aciklama small{color:var(--muted);font-size:11.5px;letter-spacing:1.2px;font-weight:800;text-transform:uppercase}
+.aciklama h3{margin:4px 0 6px;font:700 19px var(--mono)}
+.aciklama p{margin:0;font-size:16px;color:#2b3139}
+.aciklama.ok{border-color:#9bd8b3;background:#f1fbf5}
+.aciklama.bad{border-color:#f1b0ab;background:#fff4f3}
+.aciklama.ok h3{color:var(--ok)}.aciklama.bad h3{color:var(--bad)}
+
+/* ---------- bitiş / deney ---------- */
+.perde{position:fixed;inset:0;background:rgba(18,22,27,.55);display:none;place-items:center;z-index:60;backdrop-filter:blur(3px)}
+.perde.acik{display:grid}
+.kart{background:var(--panel);border-radius:18px;width:min(760px,92vw);padding:28px 32px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.kart h2{margin:0 0 4px;font-size:30px}
+.kart .alt{color:var(--muted);margin-bottom:18px}
+.yildiz{display:flex;gap:10px;margin:6px 0 18px}
+.yildiz svg{width:54px;height:54px}
+.ozet{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}
+.ozet div{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ozet small{color:var(--muted);font-size:12px;font-weight:700;letter-spacing:.8px}
+.ozet b{display:block;font:700 28px var(--mono)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:0;border-radius:12px;padding:0 22px;min-height:56px;font-weight:800;font-size:17px;background:#e2dfd7}
+.btn.ana-btn{background:#1d232b;color:#fff}
+.btn.yesil{background:var(--ok);color:#fff}
+
+.deney{display:grid;grid-template-columns:220px 1fr;gap:26px;align-items:center;margin:8px 0 20px}
+.ldr-gor{position:relative;width:220px;height:220px;border-radius:18px;background:#eef1ec;border:1px solid var(--line);overflow:hidden}
+.ldr-gor .golge{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(20,24,30,.92),rgba(20,24,30,.55) 60%,rgba(20,24,30,.2));opacity:0}
+.olcum{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.olcum div{background:#14181d;border-radius:12px;padding:10px 14px}
+.olcum small{color:#7d8794;font-size:11px;letter-spacing:1.3px;font-weight:700}
+.olcum b{display:block;font:700 34px var(--mono);color:#7cf0a0}
+.olcum div:last-child b{color:#ffd166}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:14px;border-radius:8px;
+  background:linear-gradient(90deg,#20252c,#f5d76e);outline:none;touch-action:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:44px;height:44px;border-radius:50%;background:#fff;border:3px solid #1d232b;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;background:#fff;border:3px solid #1d232b}
+.kaydir{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:6px}
+.formul{font:600 15px var(--mono);color:#394049;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 12px;margin-top:12px}
+
+@media (max-width:1100px){
+  .ana{grid-template-columns:1fr;overflow:auto}.top{gap:10px;padding:0 12px}.proj{display:none}
+  .g{min-width:70px}.g span{font-size:19px}
+}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="brand">
+    <svg viewBox="0 0 34 34"><rect x="5" y="5" width="24" height="24" rx="5" fill="#1d232b"/>
+      <g stroke="#1d232b" stroke-width="2.4" stroke-linecap="round"><path d="M10 1v4M17 1v4M24 1v4M10 29v4M17 29v4M24 29v4M1 10h4M1 17h4M1 24h4M29 10h4M29 17h4M29 24h4"/></g>
+      <circle cx="17" cy="17" r="5" fill="#0f7c86"/></svg>
+    Kod Atölyesi
+  </div>
+  <div class="proj"><small id="projNo">4 · Sensörler · S01</small><b id="projAd">Işık Theremini</b></div>
+  <div class="seviye" id="seviyeler"></div>
+  <div class="sp"></div>
+  <div class="gosterge">
+    <div class="g"><small>PUAN</small><span id="puan">0000</span></div>
+    <div class="g seri"><small>SERİ</small><span id="seri">x0</span></div>
+    <div class="g"><small>DOĞRU</small><span id="dogru">0/0</span></div>
+    <div class="g"><small>SÜRE</small><span id="sure">00:00</span></div>
+  </div>
+  <button class="ikon" id="sesBtn" title="Ses"></button>
+  <button class="ikon" id="yenile" title="Baştan başla">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#1d232b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+  </button>
+</div>
+
+<div class="ana">
+  <div class="editor">
+    <div class="sekme"><div><i></i><span id="dosya">Adim2_Kod_S01.ino</span></div><span class="yol" id="yol"></span></div>
+    <div class="kod" id="kod"></div>
+    <div class="durum"><span>Arduino Uno</span><span>LDR → A0 · Buzzer → A5</span><span class="sag" id="kalan"></span></div>
+  </div>
+  <div class="sag-panel">
+    <div class="kutu cekmece">
+      <div class="baslik"><h2>Kod parçaları</h2><span id="parcaSay"></span></div>
+      <div class="ipucu">Parçayı sürükleyip koddaki boşluğa bırak. Ya da önce parçaya, sonra boşluğa dokun.</div>
+      <div class="parcalar" id="parcalar"></div>
+      <div class="lejant">
+        <span><i style="background:var(--fn)"></i>fonksiyon</span><span><i style="background:var(--pin)"></i>pin</span>
+        <span><i style="background:var(--num)"></i>sayı</span><span><i style="background:var(--type)"></i>tür</span>
+        <span><i style="background:var(--op)"></i>işlem</span>
+      </div>
+    </div>
+    <div class="kutu aciklama" id="aciklama">
+      <small>Bu parça ne yapıyor?</small>
+      <h3>Başlamaya hazır</h3>
+      <p>Her doğru parçadan sonra burada o satırın ne işe yaradığı yazacak.</p>
+    </div>
+  </div>
+</div>
+
+<div class="perde" id="bitis"><div class="kart">
+  <h2>Kod tamam</h2><div class="alt" id="bitisAlt"></div>
+  <div class="yildiz" id="yildiz"></div>
+  <div class="ozet"><div><small>PUAN</small><b id="bPuan"></b></div><div><small>SÜRE</small><b id="bSure"></b></div><div><small>YANLIŞ</small><b id="bYanlis"></b></div></div>
+  <div class="btns"><button class="btn yesil" id="deneBtn">Devreyi dene</button><button class="btn ana-btn" id="sonrakiBtn"></button><button class="btn" id="tekrarBtn">Tekrar oyna</button></div>
+</div></div>
+
+<div class="perde" id="deneyPerde"><div class="kart">
+  <h2>Devreyi dene</h2><div class="alt" id="deneyAlt">Kaydırıcı LDR'ye düşen ışık. Elini sensörün üstüne getirmiş gibi sola çek.</div>
+  <div class="deney">
+    <div class="ldr-gor">
+      <svg viewBox="0 0 220 220" width="220" height="220">
+        <rect x="0" y="0" width="220" height="220" fill="#eef1ec"/>
+        <g fill="#a7b0ab">
+          <rect x="30" y="160" width="7" height="7" rx="1.5"/><rect x="52" y="160" width="7" height="7" rx="1.5"/><rect x="74" y="160" width="7" height="7" rx="1.5"/>
+          <rect x="140" y="160" width="7" height="7" rx="1.5"/><rect x="162" y="160" width="7" height="7" rx="1.5"/><rect x="184" y="160" width="7" height="7" rx="1.5"/>
+        </g>
+        <line x1="96" y1="164" x2="96" y2="120" stroke="#9aa0a6" stroke-width="4"/><line x1="124" y1="164" x2="124" y2="120" stroke="#9aa0a6" stroke-width="4"/>
+        <circle cx="110" cy="92" r="44" fill="#f4e3c1" stroke="#b9925a" stroke-width="3"/>
+        <path d="M84,70 h52 v11 h-52 v11 h52 v11 h-52 v11 h52" fill="none" stroke="#b5452c" stroke-width="4.5"/>
+        <text x="110" y="200" text-anchor="middle" style="font:800 15px sans-serif;fill:#4b5563">LDR</text>
+      </svg>
+      <div class="golge" id="golge"></div>
+    </div>
+    <div>
+      <div class="olcum"><div><small>analogRead(A0)</small><b id="okuma">800</b></div><div><small>tone(A5, …) Hz</small><b id="hz">0</b></div></div>
+      <input type="range" id="isik" min="0" max="1023" value="800">
+      <div class="kaydir"><span>karanlık (el kapalı)</span><span>aydınlık</span></div>
+      <div class="formul" id="formul"></div>
+    </div>
+  </div>
+  <div class="btns"><button class="btn yesil" id="calBtn">Sesi aç</button><button class="btn" id="deneKapat">Kapat</button></div>
+</div></div>
+
+<script>
+/* ============================================================
+   PROJELER
+   Kod satırlarında {{id}} bir boşluktur. Kod, repodaki .ino
+   dosyalarıyla birebir aynıdır (sadece baştaki açıklama yok).
+   ============================================================ */
+const PROJELER = [{
+  no: '4 · Sensörler · S01', ad: 'Işık Theremini',
+  seviyeler: [{
+    ad: 'Temel', dosya: 'Adim2_Kod_S01.ino', yol: '4-sensorler/S01_isik_theremini',
+    kod: [
+      'const int LDR_PIN = {{b1}};   // ışığı okuduğumuz pin',
+      'const int BUZZER  = {{b2}};   // pasif buzzer',
+      '',
+      'void setup() {',
+      '  Serial.{{b3}}(9600);     // öğretmen bilgisayarında ışık değerini izlemek için',
+      '}',
+      '',
+      'void loop() {',
+      '  int isik = {{b4}}(LDR_PIN);            // 0 (karanlık) ... 1023 (çok aydınlık)',
+      '  int ses  = {{b5}}(isik, 0, {{b6}}, 100, 2000);  // ışık sayısını ses frekansına (Hz) çevir',
+      '  {{b7}}(BUZZER, ses);                         // buzzer saniyede "ses" kez titrer',
+      '  Serial.println(isik);                      // Seri Monitör\'de ışık değeri',
+      '  delay(10);',
+      '}'
+    ],
+    bosluk: {
+      b1: {c: 'A0', k: 'pin', n: 'LDR analog pine bağlı. A0, 0 ile 5 volt arasındaki gerilimi ölçebilir; dijital pinler sadece "var / yok" der.'},
+      b2: {c: 'A5', k: 'pin', n: 'Buzzer\'ın + bacağı A5\'e gidiyor. tone() herhangi bir pinden ses çıkarabilir.'},
+      b3: {c: 'begin', k: 'fn', n: 'Seri haberleşmeyi saniyede 9600 bit hızla başlatır. Böylece ışık değerini bilgisayarda canlı görürüz.'},
+      b4: {c: 'analogRead', k: 'fn', n: 'A0\'daki gerilimi 0–1023 arası bir sayıya çevirir. digitalRead olsaydı sadece 0 ya da 1 gelirdi.'},
+      b5: {c: 'map', k: 'fn', n: 'Bir aralığı başka bir aralığa taşır: 0–1023 arası ışık → 100–2000 Hz arası ses.'},
+      b6: {c: '1023', k: 'num', n: 'analogRead\'in en büyük değeri 1023: 1024 basamak var ve sayma 0\'dan başlıyor.'},
+      b7: {c: 'tone', k: 'fn', n: 'Buzzer pinini saniyede "ses" kez açıp kapatır. Zar o hızda titrer, ses o frekansta çıkar.'}
+    },
+    yanlis: [['digitalRead','fn'],['digitalWrite','fn'],['noTone','fn'],['A3','pin'],['13','pin'],['255','num']],
+    deney: {min: 0, max: 1023, fmin: 100, fmax: 2000, yumusak: false}
+  }, {
+    ad: 'Profesyonel', dosya: 'Ekstra_Pro_S01.ino', yol: '4-sensorler/S01_isik_theremini',
+    kod: [
+      'const int LDR_PIN = A0;',
+      'const int BUZZER  = A5;',
+      '',
+      'const int FREKANS_MIN = 150;                  // en kalın ses (Hz)',
+      'const int FREKANS_MAX = 1800;                 // en ince ses (Hz)',
+      'const {{p1}} KALIBRASYON_MS = 3000;    // ilk 3 saniye: ölçüm aralığını öğren',
+      'const unsigned long GUNCELLEME_MS  = 15;      // sesi 15 ms\'de bir güncelle',
+      '',
+      'int isikMin = 1023;',
+      'int isikMax = 0;',
+      'float yumusak = 0;                            // titremesi azaltılmış ışık değeri',
+      'unsigned long sonGuncelleme = 0;',
+      '',
+      'void setup() {',
+      '  Serial.begin(9600);',
+      '  // Kalibrasyon: bu 3 saniyede elini LDR\'nin üstünde gezdir',
+      '  unsigned long baslangic = millis();',
+      '  while ({{p2}}() - baslangic < KALIBRASYON_MS) {',
+      '    int okuma = analogRead(LDR_PIN);',
+      '    isikMin = {{p3}}(isikMin, okuma);',
+      '    isikMax = {{p4}}(isikMax, okuma);',
+      '  }',
+      '  if (isikMax - isikMin < 50) {               // el gezdirilmediyse tüm aralığı kullan',
+      '    isikMin = 0;',
+      '    isikMax = 1023;',
+      '  }',
+      '  yumusak = analogRead(LDR_PIN);',
+      '}',
+      '',
+      'void loop() {',
+      '  if (millis() - sonGuncelleme {{p5}} GUNCELLEME_MS) {   // delay yok: Arduino hiç beklemez',
+      '    sonGuncelleme = millis();',
+      '    int okuma = analogRead(LDR_PIN);',
+      '    yumusak = 0.8 * yumusak + 0.2 * okuma;    // yeni ölçümün sadece %20\'si: ani sıçrama yok',
+      '    int isik = {{p6}}((int)yumusak, isikMin, isikMax);',
+      '    int frekans = {{p7}}(isik, isikMin, isikMax, FREKANS_MIN, FREKANS_MAX);',
+      '    {{p8}}(BUZZER, frekans);',
+      '    Serial.println(isik);',
+      '  }',
+      '}'
+    ],
+    bosluk: {
+      p1: {c: 'unsigned long', k: 'type', n: 'millis() "unsigned long" türünde bir sayı döndürür. Zamanla karşılaştırılan sabit de aynı türde olmalı; böylece karşılaştırma her zaman güvenli olur.'},
+      p2: {c: 'millis', k: 'fn', n: 'Arduino açıldığından beri geçen milisaniye. Şimdiki zaman − başlangıç = geçen süre.'},
+      p3: {c: 'min', k: 'fn', n: 'İki sayıdan küçüğünü verir. Böylece görülen en karanlık değer saklanır.'},
+      p4: {c: 'max', k: 'fn', n: 'İki sayıdan büyüğünü verir. Böylece görülen en aydınlık değer saklanır.'},
+      p5: {c: '>=', k: 'op', n: '15 ms dolduysa ya da geçtiyse güncelle. delay olmadığı için Arduino arada hiç durmaz.'},
+      p6: {c: 'constrain', k: 'fn', n: 'Değeri isikMin ile isikMax arasına hapseder. Aralık dışına taşarsa map aralığın dışında frekanslar üretirdi.'},
+      p7: {c: 'map', k: 'fn', n: 'Sınıfın kendi ışık aralığını (isikMin–isikMax) ses aralığına taşır. Her sınıfta ses aralığının tamamı kullanılır.'},
+      p8: {c: 'tone', k: 'fn', n: 'Hesaplanan frekansta buzzer\'ı titretir.'}
+    },
+    yanlis: [['delay','fn'],['abs','fn'],['random','fn'],['analogWrite','fn'],['<','op'],['bool','type']],
+    deney: {min: 150, max: 900, fmin: 150, fmax: 1800, yumusak: true}
+  }]
+}];
+
+/* ============================================================ */
+const $ = s => document.querySelector(s);
+let P = PROJELER[0], S = null, sevNo = 0;
+let durum = null;               // oyun durumu
+let secili = null;              // dokun-yerleştir için seçili parça
+let sesAcik = true;
+
+/* ---------- ses efektleri ---------- */
+let AC = null;
+function ac(){ if(!AC){ try{ AC = new (window.AudioContext||window.webkitAudioContext)(); }catch(e){} } if(AC && AC.state==='suspended') AC.resume(); return AC; }
+function bip(notalar, tip='sine', sure=.12, vol=.12){
+  if(!sesAcik || !ac()) return;
+  let t = AC.currentTime;
+  notalar.forEach(f => {
+    const o = AC.createOscillator(), g = AC.createGain();
+    o.type = tip; o.frequency.value = f;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vol, t+.01); g.gain.exponentialRampToValueAtTime(.0001, t+sure);
+    o.connect(g).connect(AC.destination); o.start(t); o.stop(t+sure+.02); t += sure*.85;
+  });
+}
+const sesDogru = () => bip([660, 880, 1320], 'triangle', .11, .14);
+const sesYanlis = () => bip([180, 140], 'square', .16, .06);
+const sesBitis = () => bip([523, 659, 784, 1047, 1319], 'triangle', .14, .15);
+function sesIkon(){ $('#sesBtn').innerHTML = sesAcik
+  ? '<svg viewBox="0 0 24 24" fill="none" stroke="#1d232b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>'
+  : '<svg viewBox="0 0 24 24" fill="none" stroke="#1d232b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 6 6M22 9l-6 6"/></svg>'; }
+$('#sesBtn').onclick = () => { sesAcik = !sesAcik; sesIkon(); };
+
+/* ---------- sözdizimi renklendirme ---------- */
+const KW = new Set(['const','void','if','else','while','for','return']);
+const TY = new Set(['int','float','unsigned','long','bool','byte','char']);
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function renk(t){
+  let yorum = '', i = t.indexOf('//');
+  if(i >= 0){ yorum = t.slice(i); t = t.slice(0, i); }
+  let out = esc(t).replace(/("[^"]*")|\b([A-Za-z_]\w*)\b(?=\s*\()|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_]\w*)\b/g, (m, str, fn, num, id) => {
+    if(str) return '<span class="c-str">'+str+'</span>';
+    if(fn) return (KW.has(fn) ? '<span class="c-kw">' : '<span class="c-fn">') + fn + '</span>';
+    if(num) return '<span class="c-num">'+num+'</span>';
+    if(KW.has(id)) return '<span class="c-kw">'+id+'</span>';
+    if(TY.has(id)) return '<span class="c-ty">'+id+'</span>';
+    if(/^(HIGH|LOW|A\d)$/.test(id)) return '<span class="c-num">'+id+'</span>';
+    return id;
+  });
+  if(yorum) out += '<span class="c-com">'+esc(yorum)+'</span>';
+  return out;
+}
+
+/* ---------- kur ---------- */
+function karistir(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+function seviyeButonlari(){
+  const k = $('#seviyeler'); k.innerHTML = '';
+  P.seviyeler.forEach((s, i) => {
+    const b = document.createElement('button'); b.textContent = s.ad; if(i===sevNo) b.className = 'on';
+    b.onclick = () => { sevNo = i; kur(); }; k.appendChild(b);
+  });
+}
+
+function kur(){
+  S = P.seviyeler[sevNo];
+  $('#projNo').textContent = P.no; $('#projAd').textContent = P.ad;
+  $('#dosya').textContent = S.dosya; $('#yol').textContent = S.yol;
+  seviyeButonlari();
+  durum = {puan:0, seri:0, dogru:0, yanlis:0, toplam:Object.keys(S.bosluk).length, basla:null, bitti:false};
+  secili = null; clearInterval(window._saat); $('#sure').textContent = '00:00';
+  // kod
+  const kod = $('#kod'); kod.innerHTML = ''; kod.scrollTop = 0;
+  kod.style.setProperty('--fs', S.kod.length > 20 ? '17px' : '21px');
+  S.kod.forEach((satir, i) => {
+    const ln = document.createElement('div'); ln.className = 'ln';
+    const parcalar = satir.split(/(\{\{\w+\}\})/);
+    let html = '';
+    parcalar.forEach(p => {
+      const m = p.match(/^\{\{(\w+)\}\}$/);
+      if(m){ const b = S.bosluk[m[1]];
+        html += `<span class="slot" data-id="${m[1]}" data-c="${esc(b.c)}" style="--w:${Math.max(4.2, b.c.length*0.72+1.6)}em"></span>`; }
+      else html += renk(p);
+    });
+    ln.innerHTML = `<span class="no">${i+1}</span><span class="tx">${html}</span>`;
+    kod.appendChild(ln);
+  });
+  // parçalar
+  const liste = Object.values(S.bosluk).map(b => [b.c, b.k]).concat(S.yanlis);
+  const tepsi = $('#parcalar'); tepsi.innerHTML = '';
+  karistir(liste).forEach(([c, k], i) => {
+    const el = document.createElement('div'); el.className = 'parca'; el.dataset.k = k; el.dataset.c = c; el.dataset.sira = i;
+    el.textContent = c; parcaOlaylari(el); tepsi.appendChild(el);
+  });
+  document.querySelectorAll('.slot').forEach(sl => sl.addEventListener('click', () => slotaDokun(sl)));
+  aciklama(null, 'Başlamaya hazır', 'Her doğru parçadan sonra burada o satırın ne işe yaradığı yazacak.');
+  $('#bitis').classList.remove('acik');
+  gosterge();
+}
+
+/* ---------- göstergeler ---------- */
+function gosterge(){
+  $('#puan').textContent = String(durum.puan).padStart(4, '0');
+  $('#seri').textContent = 'x' + durum.seri;
+  $('#dogru').textContent = durum.dogru + '/' + durum.toplam;
+  $('#kalan').textContent = (durum.toplam - durum.dogru) + ' boşluk kaldı';
+  $('#parcaSay').textContent = document.querySelectorAll('#parcalar .parca').length + ' parça';
+}
+function saatBaslat(){
+  if(durum.basla) return;
+  durum.basla = Date.now();
+  window._saat = setInterval(() => { if(!durum.bitti) $('#sure').textContent = sureYaz(Date.now()-durum.basla); }, 250);
+}
+const sureYaz = ms => { const s = Math.floor(ms/1000); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); };
+function aciklama(tur, baslik, metin){
+  const a = $('#aciklama'); a.className = 'kutu aciklama' + (tur ? ' '+tur : '');
+  a.querySelector('h3').textContent = baslik; a.querySelector('p').textContent = metin;
+}
+
+/* ---------- sürükle bırak (fare + dokunmatik, Pointer Events) ---------- */
+let drag = null;
+function parcaOlaylari(el){
+  el.addEventListener('pointerdown', e => {
+    if(el.classList.contains('kilit') || durum.bitti) return;
+    e.preventDefault(); ac();
+    el.setPointerCapture(e.pointerId);
+    const r = el.getBoundingClientRect();
+    drag = {el, id:e.pointerId, x0:e.clientX, y0:e.clientY, dx:e.clientX-r.left, dy:e.clientY-r.top, oynadi:false, hayalet:null, hedef:null};
+  });
+  el.addEventListener('pointermove', e => {
+    if(!drag || drag.el !== el || e.pointerId !== drag.id) return;
+    if(!drag.oynadi && Math.hypot(e.clientX-drag.x0, e.clientY-drag.y0) > 8){
+      drag.oynadi = true; saatBaslat(); seciliKaldir();
+      const h = el.cloneNode(true); h.classList.add('hayalet'); h.classList.remove('secili');
+      const r = el.getBoundingClientRect(); h.style.width = r.width+'px'; h.style.height = r.height+'px';
+      h.style.fontSize = getComputedStyle(el).fontSize;
+      document.body.appendChild(h); drag.hayalet = h; el.classList.add('gidiyor');
+    }
+    if(drag.oynadi){
+      drag.hayalet.style.transform = `translate(${e.clientX-drag.dx}px,${e.clientY-drag.dy}px) rotate(-2deg) scale(1.06)`;
+      hedefBul(e.clientX, e.clientY); kenarKaydir(e.clientY);
+    }
+  });
+  const bitir = e => {
+    if(!drag || drag.el !== el) return;
+    const d = drag; drag = null; clearInterval(window._kaydir);
+    if(d.hayalet) d.hayalet.remove();
+    el.classList.remove('gidiyor');
+    document.querySelectorAll('.hedef').forEach(x => x.classList.remove('hedef'));
+    if(!d.oynadi){ parcayaDokun(el); return; }
+    if(e.type === 'pointercancel'){ return; }
+    if(d.hedef && d.hedef.classList.contains('slot')) yerlestir(el, d.hedef);
+    else tepsiyeDon(el);
+  };
+  el.addEventListener('pointerup', bitir);
+  el.addEventListener('pointercancel', bitir);
+}
+function hedefBul(x, y){
+  document.querySelectorAll('.hedef').forEach(n => n.classList.remove('hedef'));
+  const alt = document.elementFromPoint(x, y);
+  let h = alt && alt.closest('.slot');
+  if(h && h.querySelector('.parca') && !h.contains(drag.el)) h = null;       // dolu boşluk
+  if(!h && alt && alt.closest('#parcalar')) h = $('#parcalar');
+  if(h) h.classList.add('hedef');
+  drag.hedef = h;
+}
+function kenarKaydir(y){
+  clearInterval(window._kaydir);
+  const k = $('#kod'), r = k.getBoundingClientRect();
+  let v = 0; if(y < r.top + 60 && y > r.top - 40) v = -14; else if(y > r.bottom - 60 && y < r.bottom + 40) v = 14;
+  if(v) window._kaydir = setInterval(() => { k.scrollTop += v; }, 16);
+}
+
+/* ---------- dokun-yerleştir ---------- */
+function seciliKaldir(){ if(secili){ secili.classList.remove('secili'); secili = null; } }
+function parcayaDokun(el){
+  saatBaslat();
+  const slot = el.closest('.slot');
+  if(slot){ if(slot.classList.contains('bad')) tepsiyeDon(el); return; }   // yanlış parçayı geri al
+  if(secili === el){ seciliKaldir(); return; }
+  seciliKaldir(); secili = el; el.classList.add('secili');
+}
+function slotaDokun(sl){
+  if(!secili || sl.querySelector('.parca')) return;
+  const el = secili; seciliKaldir(); yerlestir(el, sl);
+}
+
+/* ---------- kontrol ---------- */
+function yerlestir(el, slot){
+  if(slot.querySelector('.parca') && !slot.contains(el)) { tepsiyeDon(el); return; }
+  const eski = el.closest('.slot'); if(eski && eski !== slot) eski.classList.remove('bad');
+  slot.appendChild(el);
+  const b = S.bosluk[slot.dataset.id];
+  slot.classList.remove('ok', 'bad'); void slot.offsetWidth;
+  const satir = slot.closest('.ln');
+  if(el.dataset.c === slot.dataset.c){
+    slot.classList.add('ok'); el.classList.add('kilit');
+    durum.dogru++; durum.seri++; durum.puan += 10 + 5 * Math.min(durum.seri - 1, 4);
+    sesDogru(); aciklama('ok', el.dataset.c, b.n);
+    satir.classList.add('aktif'); setTimeout(() => satir.classList.remove('aktif'), 1600);
+    if(durum.dogru === durum.toplam) setTimeout(bitis, 1300);
+  } else {
+    slot.classList.add('bad');
+    durum.yanlis++; durum.seri = 0; durum.puan = Math.max(0, durum.puan - 5);
+    sesYanlis(); aciklama('bad', el.dataset.c + ' buraya uymuyor', 'Kırmızı yanıp sönen parçayı tutup sağdaki kutuya geri götür (ya da üstüne dokun). Sonra başka bir parça dene.');
+  }
+  gosterge();
+}
+function tepsiyeDon(el){
+  const eski = el.closest('.slot'); if(eski) eski.classList.remove('bad');
+  const tepsi = $('#parcalar');
+  const sonraki = [...tepsi.children].find(c => +c.dataset.sira > +el.dataset.sira);
+  tepsi.insertBefore(el, sonraki || null);
+  gosterge();
+}
+
+/* ---------- bitiş ---------- */
+function bitis(){
+  durum.bitti = true; clearInterval(window._saat);
+  const sure = Date.now() - durum.basla, y = durum.yanlis;
+  const yildiz = y === 0 ? 3 : y <= 2 ? 2 : 1;
+  const yol = 'M27 3l7.4 15 16.6 2.4-12 11.7 2.8 16.5L27 40.8 12.2 48.6 15 32.1 3 20.4l16.6-2.4z';
+  $('#yildiz').innerHTML = [1,2,3].map(i => `<svg viewBox="0 0 54 54"><path d="${yol}" fill="${i<=yildiz?'#f5b301':'#d6d3ca'}" stroke="${i<=yildiz?'#c98f00':'#c4c0b5'}" stroke-width="2" stroke-linejoin="round"/></svg>`).join('');
+  $('#bPuan').textContent = durum.puan; $('#bSure').textContent = sureYaz(sure); $('#bYanlis').textContent = y;
+  $('#bitisAlt').textContent = `${S.dosya} hatasız. Bu kod Arduino'ya yüklenmeye hazır.`;
+  const son = sevNo < P.seviyeler.length - 1;
+  $('#sonrakiBtn').textContent = son ? P.seviyeler[sevNo+1].ad + ' seviyeye geç' : 'Temel seviyeye dön';
+  $('#sonrakiBtn').onclick = () => { sevNo = son ? sevNo + 1 : 0; kur(); };
+  sesBitis(); $('#bitis').classList.add('acik');
+}
+$('#tekrarBtn').onclick = () => kur();
+$('#yenile').onclick = () => kur();
+
+/* ---------- devreyi dene (theremin simülasyonu) ---------- */
+const mapA = (x, a, b, c, d) => Math.trunc((x - a) * (d - c) / (b - a)) + c;   // Arduino map: tam sayı
+let osc = null, oscGain = null, simYum = 800, simRaf = null;
+function hesapla(isik){
+  const D = S.deney;
+  if(D.yumusak){ simYum = 0.8 * simYum + 0.2 * isik; isik = Math.trunc(simYum); }
+  const k = Math.min(Math.max(isik, D.min), D.max);
+  return {okunan: D.yumusak ? k : isik, hz: mapA(k, D.min, D.max, D.fmin, D.fmax)};
+}
+function simAdim(){
+  const isik = +$('#isik').value, r = hesapla(isik);
+  $('#okuma').textContent = r.okunan; $('#hz').textContent = r.hz;
+  $('#golge').style.opacity = (1 - isik / 1023).toFixed(2);
+  if(osc) osc.frequency.setTargetAtTime(r.hz, AC.currentTime, .015);
+  simRaf = setTimeout(simAdim, 15);
+}
+$('#deneBtn').onclick = () => {
+  const D = S.deney; simYum = +$('#isik').value;
+  $('#formul').textContent = D.yumusak
+    ? `isik = constrain(yumusak, ${D.min}, ${D.max})   frekans = map(isik, ${D.min}, ${D.max}, ${D.fmin}, ${D.fmax})   (kalibrasyon örneği: ${D.min}–${D.max})`
+    : `ses = map(isik, 0, 1023, ${D.fmin}, ${D.fmax})`;
+  $('#deneyPerde').classList.add('acik'); clearTimeout(simRaf); simAdim();
+};
+function sesKapat(){ if(osc){ oscGain.gain.setTargetAtTime(0, AC.currentTime, .02); const o = osc; setTimeout(() => o.stop(), 120); osc = null; } $('#calBtn').textContent = 'Sesi aç'; }
+$('#calBtn').onclick = () => {
+  if(osc){ sesKapat(); return; }
+  if(!ac()) return;
+  osc = AC.createOscillator(); oscGain = AC.createGain();
+  osc.type = 'square'; osc.frequency.value = +$('#hz').textContent || 440;
+  oscGain.gain.value = 0; oscGain.gain.setTargetAtTime(.05, AC.currentTime, .02);
+  osc.connect(oscGain).connect(AC.destination); osc.start();
+  $('#calBtn').textContent = 'Sesi kapat';
+};
+$('#deneKapat').onclick = () => { sesKapat(); clearTimeout(simRaf); $('#deneyPerde').classList.remove('acik'); };
+
+document.addEventListener('contextmenu', e => e.preventDefault());
+sesIkon(); kur();
+</script>
+</body>
+</html>
