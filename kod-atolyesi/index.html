@@ -27,7 +27,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .proj small{color:var(--muted);font-size:12px;letter-spacing:.6px;text-transform:uppercase}
 .proj b{font-size:18px}
 .seviye{display:flex;background:#e2dfd7;border-radius:12px;padding:4px;gap:4px;margin-left:6px}
-.seviye button{border:0;background:transparent;padding:10px 18px;border-radius:9px;font-weight:700;font-size:15px;color:#555b63;min-height:44px}
+.seviye button{border:0;background:transparent;padding:10px 14px;border-radius:9px;font-weight:700;font-size:15px;color:#555b63;min-height:44px}
 .seviye button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.15)}
 .sp{flex:1}
 .gosterge{display:flex;gap:6px;background:#14181d;border-radius:12px;padding:7px 8px;box-shadow:inset 0 2px 6px rgba(0,0,0,.5)}
@@ -47,7 +47,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sekme div{background:var(--ed);color:#d6dde6;font:600 14px var(--mono);padding:11px 18px;border-radius:9px 9px 0 0;
   display:flex;align-items:center;gap:8px}
 .sekme div i{width:8px;height:8px;border-radius:50%;background:#e0a100;display:inline-block}
-.sekme .yol{color:#6c7783;font:13px var(--mono);margin:0 0 12px auto;padding-right:8px}
+.sekme .yol{color:#9fb0c0;font:600 14px -apple-system,'Segoe UI',sans-serif;margin:0 0 12px auto;padding-right:8px}
 .kod{flex:1;overflow:auto;padding:16px 0 26px;position:relative;scroll-behavior:smooth}
 .kod::-webkit-scrollbar{width:12px}.kod::-webkit-scrollbar-thumb{background:#39414b;border-radius:6px;border:3px solid var(--ed)}
 .ln{display:flex;font:var(--fs,21px)/1.75 var(--mono);color:#d4dbe3;white-space:pre;min-height:calc(var(--fs,21px)*1.75)}
@@ -235,36 +235,158 @@ input[type=range]::-moz-range-thumb{width:40px;height:40px;border-radius:50%;bac
 const PROJELER = [{
   no: '4 · Sensörler · S01', ad: 'Işık Theremini',
   seviyeler: [{
-    ad: 'Temel', dosya: 'Adim2_Kod_S01.ino', yol: '4-sensorler/S01_isik_theremini',
+    ad: 'Temel 1', konu: 'İskelet: setup, loop, { } ;', dosya: 'Adim2_Kod_S01.ino',
     kod: [
-      'const int LDR_PIN = {{b1}};   // ışığı okuduğumuz pin',
-      'const int BUZZER  = {{b2}};   // pasif buzzer',
+      'const int LDR_PIN = A0{{s1}}   // ışığı okuduğumuz pin',
+      'const int BUZZER  = A5;   // pasif buzzer',
+      '',
+      '{{s2}} {{s3}}() {{s4}}',
+      '  Serial.begin(9600);     // öğretmen bilgisayarında ışık değerini izlemek için',
+      '{{s5}}',
+      '',
+      '{{s6}} {{s7}}() {',
+      '  int isik = analogRead(LDR_PIN){{s8}}            // 0 (karanlık) ... 1023 (çok aydınlık)',
+      '  int ses  = map(isik, 0, 1023, 100, 2000);  // ışık sayısını ses frekansına (Hz) çevir',
+      '  tone(BUZZER, ses);                         // buzzer saniyede "ses" kez titrer',
+      '  Serial.println(isik);                      // Seri Monitör\'de ışık değeri',
+      '  delay(10){{s9}}',
+      '}'
+    ],
+    bosluk: {
+      s1: {c: ';', k: 'op', n: 'Noktalı virgül bir komutun bittiğini söyler. Türkçedeki nokta gibi: unutursan Arduino cümlenin nerede bittiğini anlamaz ve kod derlenmez.'},
+      s2: {c: 'void', k: 'type', n: '"void" boş demek: bu fonksiyon iş yapar ama geriye bir sonuç döndürmez.'},
+      s3: {c: 'setup', k: 'fn', n: 'setup, Arduino açıldığında sadece BİR KEZ çalışır. Hazırlık işleri buraya yazılır.'},
+      s4: {c: '{', k: 'op', n: 'Süslü parantez açılınca fonksiyonun gövdesi başlar. İçindeki her şey bu fonksiyona aittir.'},
+      s5: {c: '}', k: 'op', n: 'Açılan her süslü parantez kapanmalı. Burada setup\'ın gövdesi bitiyor.'},
+      s6: {c: 'void', k: 'type', n: 'loop da sonuç döndürmez, o yüzden o da void.'},
+      s7: {c: 'loop', k: 'fn', n: 'loop, setup bittikten sonra SÜREKLİ tekrar eder. Ölç, çevir, çal… saniyede yaklaşık 100 kez.'},
+      s8: {c: ';', k: 'op', n: 'Her komutun sonunda noktalı virgül. Satırın sonundaki // yorumu komutun parçası değildir.'},
+      s9: {c: ';', k: 'op', n: 'delay(10) de bir komut, o da noktalı virgülle biter.'}
+    },
+    yanlis: [[':','op'],[',','op'],['[','op'],['main','fn'],['start','fn'],['int','type']],
+    deney: {min: 0, max: 1023, fmin: 100, fmax: 2000}
+  }, {
+    ad: 'Temel 2', konu: 'Değişkenler: const, int, =', dosya: 'Adim2_Kod_S01.ino',
+    kod: [
+      '{{v1}} int LDR_PIN = A0;   // ışığı okuduğumuz pin',
+      'const {{v2}} BUZZER  = A5;   // pasif buzzer',
       '',
       'void setup() {',
-      '  Serial.{{b3}}(9600);     // öğretmen bilgisayarında ışık değerini izlemek için',
+      '  Serial.begin(9600);     // öğretmen bilgisayarında ışık değerini izlemek için',
       '}',
       '',
       'void loop() {',
-      '  int isik = {{b4}}(LDR_PIN);            // 0 (karanlık) ... 1023 (çok aydınlık)',
-      '  int ses  = {{b5}}(isik, 0, {{b6}}, 100, 2000);  // ışık sayısını ses frekansına (Hz) çevir',
-      '  {{b7}}(BUZZER, ses);                         // buzzer saniyede "ses" kez titrer',
-      '  Serial.println(isik);                      // Seri Monitör\'de ışık değeri',
+      '  {{v3}} isik = analogRead(LDR_PIN);            // 0 (karanlık) ... 1023 (çok aydınlık)',
+      '  int ses  {{v4}} map(isik, 0, 1023, 100, 2000);  // ışık sayısını ses frekansına (Hz) çevir',
+      '  tone(BUZZER, {{v5}});                         // buzzer saniyede "ses" kez titrer',
+      '  Serial.println({{v6}});                      // Seri Monitör\'de ışık değeri',
       '  delay(10);',
       '}'
     ],
     bosluk: {
-      b1: {c: 'A0', k: 'pin', n: 'LDR analog pine bağlı. A0, 0 ile 5 volt arasındaki gerilimi ölçebilir; dijital pinler sadece "var / yok" der.'},
-      b2: {c: 'A5', k: 'pin', n: 'Buzzer\'ın + bacağı A5\'e gidiyor. tone() herhangi bir pinden ses çıkarabilir.'},
-      b3: {c: 'begin', k: 'fn', n: 'Seri haberleşmeyi saniyede 9600 bit hızla başlatır. Böylece ışık değerini bilgisayarda canlı görürüz.'},
-      b4: {c: 'analogRead', k: 'fn', n: 'A0\'daki gerilimi 0–1023 arası bir sayıya çevirir. digitalRead olsaydı sadece 0 ya da 1 gelirdi.'},
-      b5: {c: 'map', k: 'fn', n: 'Bir aralığı başka bir aralığa taşır: 0–1023 arası ışık → 100–2000 Hz arası ses.'},
-      b6: {c: '1023', k: 'num', n: 'analogRead\'in en büyük değeri 1023: 1024 basamak var ve sayma 0\'dan başlıyor.'},
-      b7: {c: 'tone', k: 'fn', n: 'Buzzer pinini saniyede "ses" kez açıp kapatır. Zar o hızda titrer, ses o frekansta çıkar.'}
+      v1: {c: 'const', k: 'type', n: '"const" sabit demek: LDR_PIN program boyunca hep A0 kalır. Yanlışlıkla değiştirmeye çalışırsan Arduino izin vermez.'},
+      v2: {c: 'int', k: 'type', n: '"int" tam sayı kutusu. Pin numarası tam sayıdır (A5 aslında 19 numaralı pin).'},
+      v3: {c: 'int', k: 'type', n: 'isik 0–1023 arası tam sayı, o yüzden int. bool olsaydı sadece doğru/yanlış tutabilirdi.'},
+      v4: {c: '=', k: 'op', n: 'Tek eşittir "koy" demek: sağdaki sonucu soldaki kutuya koy. "==" ise "eşit mi?" diye sorar.'},
+      v5: {c: 'ses', k: 'num', n: 'tone\'a çalacağı frekansı veriyoruz: bir satır önce hesapladığımız ses değişkeni.'},
+      v6: {c: 'isik', k: 'num', n: 'Seri Monitör\'e ışık değerini yazdırıyoruz. Tırnaksız: kutunun İÇİNDEKİ sayı yazılır.'}
     },
-    yanlis: [['digitalRead','fn'],['digitalWrite','fn'],['noTone','fn'],['A3','pin'],['13','pin'],['255','num']],
-    deney: {min: 0, max: 1023, fmin: 100, fmax: 2000, yumusak: false}
+    yanlis: [['==','op'],['void','type'],['bool','type'],['"isik"','num']],
+    deney: {min: 0, max: 1023, fmin: 100, fmax: 2000}
   }, {
-    ad: 'Profesyonel', dosya: 'Ekstra_Pro_S01.ino', yol: '4-sensorler/S01_isik_theremini',
+    ad: 'Temel 3', konu: 'Fonksiyonlar: parantez içine ne girer?', dosya: 'Adim2_Kod_S01.ino',
+    kod: [
+      'const int LDR_PIN = A0;   // ışığı okuduğumuz pin',
+      'const int BUZZER  = A5;   // pasif buzzer',
+      '',
+      'void setup() {',
+      '  Serial.begin({{f1}});     // öğretmen bilgisayarında ışık değerini izlemek için',
+      '}',
+      '',
+      'void loop() {',
+      '  int isik = analogRead({{f2}});            // 0 (karanlık) ... 1023 (çok aydınlık)',
+      '  int ses  = map({{f3}}, 0, 1023, 100, 2000);  // ışık sayısını ses frekansına (Hz) çevir',
+      '  tone({{f4}}, {{f5}});                         // buzzer saniyede "ses" kez titrer',
+      '  Serial.println(isik);                      // Seri Monitör\'de ışık değeri',
+      '  delay({{f6}});',
+      '}'
+    ],
+    bosluk: {
+      f1: {c: '9600', k: 'num', n: 'Haberleşme hızı: saniyede 9600 bit. Seri Monitör de aynı hıza ayarlı olmalı, yoksa ekranda anlamsız karakterler görünür.'},
+      f2: {c: 'LDR_PIN', k: 'pin', n: 'analogRead\'e HANGİ pini ölçeceğini söylüyoruz: LDR\'nin bağlı olduğu A0.'},
+      f3: {c: 'isik', k: 'num', n: 'map\'in ilk parametresi çevrilecek sayı: az önce ölçtüğümüz ışık.'},
+      f4: {c: 'BUZZER', k: 'pin', n: 'tone\'un ilk parametresi: HANGİ pinden ses çıksın? Buzzer\'ın pini.'},
+      f5: {c: 'ses', k: 'num', n: 'tone\'un ikinci parametresi: KAÇ Hz? Sıra önemli: önce pin, sonra frekans.'},
+      f6: {c: '10', k: 'num', n: '10 milisaniye bekle. 1000 yazsaydık ses saniyede bir değişirdi, theremin kekelerdi.'}
+    },
+    yanlis: [['A3','pin'],['"ses"','num'],['1000','num'],['255','num']],
+    deney: {min: 0, max: 1023, fmin: 100, fmax: 2000}
+  }, {
+    ad: 'Temel 4', konu: 'Karar: if / else (gece alarmı)', dosya: 'Ekstra_Karar_S01.ino',
+    kod: [
+      'const int LDR_PIN = A0;',
+      'const int BUZZER  = A5;',
+      'const int ESIK    = 400;          // sınıfına göre ayarla',
+      '',
+      'void setup() {',
+      '  Serial.begin(9600);',
+      '}',
+      '',
+      'void loop() {',
+      '  int isik = analogRead(LDR_PIN);',
+      '  Serial.println(isik);',
+      '',
+      '  {{k1}} (isik {{k2}} {{k3}}) {              // karanlık mı?',
+      '    tone(BUZZER, 1000);           // evet: alarm',
+      '  } {{k4}} {',
+      '    {{k5}}(BUZZER);               // hayır: sessiz',
+      '  }',
+      '  delay(10);',
+      '}'
+    ],
+    bosluk: {
+      k1: {c: 'if', k: 'fn', n: '"if" = eğer. Parantezin içi doğruysa ilk süslü parantezdeki kod çalışır.'},
+      k2: {c: '<', k: 'op', n: 'Küçüktür: ışık eşikten AZ ise karanlık demektir. ">" yazsaydık alarm aydınlıkta çalardı.'},
+      k3: {c: 'ESIK', k: 'num', n: 'Karşılaştırdığımız sınır. Sayıyı en üstte sabit olarak tuttuk: sınıf değişince tek yerden ayarlanır.'},
+      k4: {c: 'else', k: 'fn', n: '"else" = değilse. Koşul yanlışsa (aydınlıksa) bu kısım çalışır.'},
+      k5: {c: 'noTone', k: 'fn', n: 'Buzzer\'ı susturur. tone\'un tersi; sadece pini ister, frekansa gerek yok.'}
+    },
+    yanlis: [['while','fn'],['>','op'],['=','op'],['then','fn'],['tone','fn']],
+    deney: {alarm: true, esik: 400, hz: 1000}
+  }, {
+    ad: 'Temel 5', konu: 'Döngü: for / while', dosya: 'Ekstra_Dongu_S01.ino',
+    kod: [
+      'const int LDR_PIN = A0;',
+      'const int BUZZER  = A5;',
+      'const int ESIK    = 400;          // sınıfına göre ayarla',
+      '',
+      'void setup() {',
+      '  {{d1}} (int i = 0; i < {{d2}}; {{d3}}) {   // 3 kez tekrarla: devre hazır sinyali',
+      '    tone(BUZZER, 1000);',
+      '    delay(100);',
+      '    noTone(BUZZER);',
+      '    delay(100);',
+      '  }',
+      '}',
+      '',
+      'void loop() {',
+      '  {{d4}} (analogRead(LDR_PIN) < ESIK) {   // karanlık sürdükçe',
+      '    tone(BUZZER, 800);                   // alarm çalmaya devam et',
+      '  }',
+      '  {{d5}}(BUZZER);                        // aydınlık: sus',
+      '}'
+    ],
+    bosluk: {
+      d1: {c: 'for', k: 'fn', n: '"for" sayarak tekrar eder: i = 0\'dan başla, i < 3 oldukça devam et, her turda i\'yi 1 artır.'},
+      d2: {c: '3', k: 'num', n: 'i 0, 1, 2 değerlerini alır: toplam 3 tur, yani 3 bip. i 3 olunca koşul yanlış olur, döngü biter.'},
+      d3: {c: 'i++', k: 'op', n: '"i++" i\'yi 1 artırır. "i--" olsaydı i hiç 3\'e ulaşamaz, döngü neredeyse hiç bitmezdi.'},
+      d4: {c: 'while', k: 'fn', n: '"while" = -dığı sürece. Karanlık sürdükçe içeride kalır, ışığı her turda yeniden ölçer. "if" olsaydı ses açılır açılmaz noTone ile kesilirdi.'},
+      d5: {c: 'noTone', k: 'fn', n: 'while\'dan çıkıldıysa artık aydınlık demektir: buzzer\'ı sustur.'}
+    },
+    yanlis: [['if','fn'],['i--','op'],['repeat','fn'],['30','num'],['tone','fn']],
+    deney: {alarm: true, esik: 400, hz: 800}
+  }, {
+    ad: 'Profesyonel', konu: 'Kalibrasyon, yumuşatma, millis', dosya: 'Ekstra_Pro_S01.ino',
     kod: [
       'const int LDR_PIN = A0;',
       'const int BUZZER  = A5;',
@@ -384,7 +506,7 @@ function seviyeButonlari(){
 function kur(){
   S = P.seviyeler[sevNo];
   $('#projNo').textContent = P.no; $('#projAd').textContent = P.ad;
-  $('#dosya').textContent = S.dosya; $('#yol').textContent = S.yol;
+  $('#dosya').textContent = S.dosya; $('#yol').textContent = S.konu;
   seviyeButonlari();
   durum = {puan:0, seri:0, dogru:0, yanlis:0, toplam:Object.keys(S.bosluk).length, basla:null, bitti:false};
   secili = null; clearInterval(window._saat); $('#sure').textContent = '00:00';
@@ -555,6 +677,7 @@ const mapA = (x, a, b, c, d) => Math.trunc((x - a) * (d - c) / (b - a)) + c;   /
 let osc = null, oscGain = null, simYum = 800, simRaf = null;
 function hesapla(isik){
   const D = S.deney;
+  if(D.alarm) return {okunan: isik, hz: isik < D.esik ? D.hz : 0};
   if(D.yumusak){ simYum = 0.8 * simYum + 0.2 * isik; isik = Math.trunc(simYum); }
   const k = Math.min(Math.max(isik, D.min), D.max);
   return {okunan: D.yumusak ? k : isik, hz: mapA(k, D.min, D.max, D.fmin, D.fmax)};
@@ -563,12 +686,14 @@ function simAdim(){
   const isik = +$('#isik').value, r = hesapla(isik);
   $('#okuma').textContent = r.okunan; $('#hz').textContent = r.hz;
   $('#golge').style.opacity = (1 - isik / 1023).toFixed(2);
-  if(osc) osc.frequency.setTargetAtTime(r.hz, AC.currentTime, .015);
+  if(osc){ if(r.hz > 0) osc.frequency.setTargetAtTime(r.hz, AC.currentTime, .015); oscGain.gain.setTargetAtTime(r.hz > 0 ? .05 : 0, AC.currentTime, .015); }
   simRaf = setTimeout(simAdim, 15);
 }
 $('#deneBtn').onclick = () => {
   const D = S.deney; simYum = +$('#isik').value;
-  $('#formul').textContent = D.yumusak
+  $('#formul').textContent = D.alarm
+    ? `isik < ${D.esik} ise tone(BUZZER, ${D.hz}), değilse noTone(BUZZER)   (0 Hz = sessiz)`
+    : D.yumusak
     ? `isik = constrain(yumusak, ${D.min}, ${D.max})   frekans = map(isik, ${D.min}, ${D.max}, ${D.fmin}, ${D.fmax})   (kalibrasyon örneği: ${D.min}–${D.max})`
     : `ses = map(isik, 0, 1023, ${D.fmin}, ${D.fmax})`;
   $('#deneyPerde').classList.add('acik'); clearTimeout(simRaf); simAdim();
